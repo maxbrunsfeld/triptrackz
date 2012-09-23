@@ -4,19 +4,15 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.where(
-      :provider => params["provider"],
-      :uid => params["uid"]
-    ).first
+    user = User.find_or_create_by_provider_and_uid(
+      params["provider"],
+      params["uid"]
+    )
 
-    if !user
-      user = User.create({
-        :provider => params["provider"],
-        :uid => params["uid"],
-        :name => params["name"],
-        :email => params["email"]
-      })
-    end
+    user.update_attributes(
+      :name => params["name"],
+      :email => params["email"]
+    )
 
     set_current_user(user)
     redirect_to "/"

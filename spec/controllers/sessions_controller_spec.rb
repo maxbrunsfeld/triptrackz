@@ -4,23 +4,29 @@ describe SessionsController do
   describe "#create" do
     context "when a user with the given credentials already exists" do
       before do
-        user = User.create({
+        @user = User.create({
           "provider" => "facebook",
+          "uid" => "1234",
           "name" => "John Doe",
-          "email" => "john@example.com",
-          "uid" => "1234"
+          "email" => "john@example.com"
         })
+
+        post :create, {
+          "provider" => "facebook",
+          "uid" => "1234",
+          "name" => "Jonathan Doe",
+          "email" => "john@example2.com"
+        }
       end
 
       it "logs the person in as that user" do
-        post :create, {
-          "provider" => "facebook",
-          "name" => "John Doe",
-          "email" => "john@example.com",
-          "uid" => "1234"
-        }
+        controller.current_user.should == @user
+      end
 
-        controller.current_user.should == nil
+      it "updates their name and email if they have changed" do
+        @user.reload
+        @user.name.should == "Jonathan Doe"
+        @user.email.should == "john@example2.com"
       end
     end
 

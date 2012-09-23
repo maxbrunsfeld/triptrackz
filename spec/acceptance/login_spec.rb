@@ -1,17 +1,11 @@
 require "spec_helper"
 
-describe "login", :type => :request do
+describe "logging in", :type => :request do
   before do
-    visit "/login"
+    log_in("Louie")
   end
 
-  it "has links to every login provider" do
-    click_link "Test Login"
-
-    fill_in "name", :with => "Louie"
-    fill_in "email", :with => "louie@example.com"
-    click_button "Sign In"
-
+  it "directs the user to the home page" do
     current_path.should == "/"
     page.should have_content("Where are you going?")
     page.should have_content("Louie")
