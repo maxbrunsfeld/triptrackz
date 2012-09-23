@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  font-family: Helvetica
+}
+
+#header {
+  height: 40px;
+  padding: 10px;
+  background-color: #aaa;
+}
+
+#title {
+  font-size: 24px;
+  margin: 0;
+  display: inline;
+}
+
+#user {
+  float: right;
+}
+
+#main {
+  padding: 10px;
+}
+
+#main h1 {
+  font-size: 18px;
+  text-align: center;
+}
