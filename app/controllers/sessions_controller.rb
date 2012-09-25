@@ -10,4 +10,8 @@ class SessionsController < ApplicationController
     redirect_to "/"
   end
 
+  def destroy
+    set_current_user(nil)
+    redirect_to "/login"
+  end
 end

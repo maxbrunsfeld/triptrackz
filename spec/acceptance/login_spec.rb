@@ -10,4 +10,11 @@ describe "logging in", :type => :request do
     page.should have_content("Where are you going?")
     page.should have_content("Louie")
   end
+
+  describe "logging out" do
+    it "directs the user to the login page" do
+      click_link "Log out"
+      current_path.should == "/login"
+    end
+  end
 end

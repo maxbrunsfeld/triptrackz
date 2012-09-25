@@ -50,4 +50,19 @@ describe SessionsController do
       response.should redirect_to "/"
     end
   end
+
+  describe "#destroy" do
+    it "logs the user out" do
+      user = User.create!({:name => "Hojo", :email => "hojo@example.com"})
+      controller.set_current_user(user)
+      controller.current_user.should_not be_nil
+      delete :destroy
+      controller.current_user.should be_nil
+    end
+
+    it "redirects the user to the home page" do
+      delete :destroy
+      response.should redirect_to "/login"
+    end
+  end
 end
