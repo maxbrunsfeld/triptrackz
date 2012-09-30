@@ -15,24 +15,15 @@
   <form id="route">
     <input name="start" type="text" placeholder="Starting Place"/>
     <input name="end" type="text" placeholder="Destination"/>
-    <button>Go</button>
+    <button name="go">Go</button>
   </form>
   <div id="map_canvas"></div>
+
+  <div class="tripcasts">
+    <h2>Most Popular Tripcasts</h2>
+    <ol></ol>
+  </div>
 </div>
 
-<%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=#{API_KEYS["google_maps"]}&sensor=true" %>
-
-<script type="text/javascript">
-  function initialize() {
-    var map = new google.maps.Map(
-      document.getElementById("map_canvas"),
-      {
-        center: new google.maps.LatLng(-34.397, 150.644),
-        zoom: 8,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      }
-    );
-  }
-
-  initialize();
-</script>
+<%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=#{API_KEYS["google_maps"]}&sensor=true&libraries=drawing" %>
+<%= javascript_include_tag "application" %>
