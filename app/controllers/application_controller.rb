@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def current_user
     id = session[:user_id]
-    User.find(id) if id
+    User.find_by_id(id) if id
   end
 
   def set_current_user(user)
