@@ -27,3 +27,10 @@
 
 <%= javascript_include_tag google_maps_js_url %>
 <%= javascript_include_tag "application" %>
+
+<script>
+  (function() {
+    var el = document.getElementById("map_canvas");
+    var view = new views.Map({ el: el });
+  })();
+</script>

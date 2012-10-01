@@ -1,3 +1,18 @@
+views.Map = Backbone.View.extend({
+
+  initialize: function() {
+    var usa = new google.maps.LatLng(39, -103);
+
+    this.map = new google.maps.Map(this.el, {
+      center: usa,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      zoom: 4
+    });
+  }
+});
+
+
+
 var directionsDisplay;
 var directionsService;
 var map;
@@ -73,13 +88,9 @@ function calcRoute(start, end) {
   });
 
 
-
-
 }
 
-
-
-initialize();
+// initialize();
 
 $("button[name='go']").on("click", function(event) {
   var start = $("input[name='start']").val();
@@ -89,3 +100,4 @@ $("button[name='go']").on("click", function(event) {
 
   event.preventDefault();
 });
+
