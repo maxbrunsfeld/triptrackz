@@ -1,18 +1,8 @@
-<html>
-  <head>
-    <title>Specs</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <%= stylesheet_link_tag    "tests", :media => "all" %>
-    <%= stylesheet_link_tag    "application", :media => "all" %>
-  </head>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "support/mocha" %>
+<% end %>
 
-  <body>
-    <div id="mocha"></div>
-    <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag "tests" %>
+<div id="mocha"></div>
+<%= javascript_include_tag "tests" %>
 
-    <script>
-      mocha.run();
-    </script>
-  </body>
-</html>
+<script> mocha.run(); </script>
