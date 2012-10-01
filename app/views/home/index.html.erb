@@ -27,7 +27,15 @@
 
 <script>
   (function() {
-    var el = document.getElementById("map_canvas");
-    var view = new views.Map({ el: el });
+
+    var mapView = new views.Map({
+      el: document.getElementById("map_canvas")
+    });
+
+    var pageView = new views.RoutePage({
+      el: document.getElementById("main"),
+      mapView: mapView
+    });
+
   })();
 </script>

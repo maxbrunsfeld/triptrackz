@@ -14,7 +14,7 @@ describe("views.Map", function() {
   });
 
   it("centers the map on the united states", function() {
-    var center = googleMap.options.center;
+    var center = googleMap.center;
     var denver = new google.maps.LatLng(39.7392, -104.9842);
 
     expect(center).to.be.an.instanceOf(google.maps.LatLng);
@@ -26,8 +26,11 @@ describe("views.Map", function() {
     expect(googleMap.options.mapTypeId).to.equal(google.maps.MapTypeId.ROADMAP);
   });
 
-  describe("when ", function() {
-    
+  describe("#centerMap(latLng)", function() {
+    it("re-centers the map at the given coordinates", function() {
+      var newCenter = new google.maps.LatLng(40, -130);
+      view.centerMap(newCenter);
+      expect(googleMap.center).to.equal(newCenter);
+    });
   });
-
 });
