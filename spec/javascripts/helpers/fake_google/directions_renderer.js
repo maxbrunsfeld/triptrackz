@@ -1,19 +1,15 @@
-(function() {
+google.maps.DirectionsRenderer = $.noop;
 
-  google.maps.DirectionsRenderer = $.noop;
+_.extend(google.maps.DirectionsRenderer.prototype, {
 
-  _.extend(google.maps.DirectionsRenderer.prototype, {
+  setMap: function(map) {
+    this.map = map;
+  },
 
-    setMap: function(googleMap) {
-      this.googleMap = googleMap;
-    },
+  setDirections: function(data) {
+    if (!this.map) { throw "No map for directions renderer!"; }
+    this.data = data;
+  }
 
-    setDirections: function(data) {
-      if (!this.googleMap) { throw "No map set on directions renderer!"; }
-      this.data = data;
-    }
-
-  });
-
-})();
+});
 
