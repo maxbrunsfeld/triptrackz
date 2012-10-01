@@ -1,0 +1,1 @@
+window.google = { maps: {} };
