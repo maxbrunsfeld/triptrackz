@@ -1,6 +1,7 @@
 google.backdoor = {
 
   allMaps: [],
+  allGeocodeRequests: [],
 
   initalizeMap: function(map) {
     this.allMaps.push(map);
@@ -26,9 +27,27 @@ google.backdoor = {
   },
 
   distance: function(start, end) {
-    var dx = end.lat - start.lat;
-    var dy = end.lng - start.lng;
+    var dx = end.lat() - start.lat();
+    var dy = end.lng() - start.lng();
     return Math.sqrt(dx * dx + dy * dy);
+  },
+
+  geocode: function(options, callback) {
+    this.allGeocodeRequests.push({
+      options: options,
+      callback: callback
+    });
+  },
+
+  completeLastGeocodeRequest: function(location) {
+    var lastRequest = _.last(this.allGeocodeRequests);
+    var data = [
+      {
+        geometry: { location: location }
+      }
+    ];
+
+    lastRequest.callback(data);
   }
 
 };
