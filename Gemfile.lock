@@ -40,6 +40,9 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    capybara-webkit (0.12.1)
+      capybara (>= 1.0.0, < 1.2)
+      json
     childprocess (0.3.5)
       ffi (~> 1.0, >= 1.0.6)
     chunky_png (1.2.6)
@@ -66,6 +69,8 @@ GEM
     json (1.7.5)
     jwt (0.1.5)
       multi_json (>= 1.0)
+    launchy (2.1.2)
+      addressable (~> 2.3)
     libwebsocket (0.1.5)
       addressable
     mail (2.4.4)
@@ -160,8 +165,10 @@ PLATFORMS
 DEPENDENCIES
   activerecord-postgresql-adapter
   capybara
+  capybara-webkit
   compass-rails
   jquery-rails
+  launchy
   omniauth
   omniauth-facebook
   pg
