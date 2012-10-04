@@ -1,20 +1,24 @@
 (function() {
 
-  var DEFAULT_CENTER = new google.maps.LatLng(39, -103);
-  var ZOOM_LEVEL = 4;
+  var DEFAULT = {
+    CENTER: new google.maps.LatLng(39, -103),
+    ZOOM_LEVEL: 4
+  };
 
   views.Map = Backbone.View.extend({
 
     initialize: function() {
       this.map = new google.maps.Map(this.el, {
-        center: DEFAULT_CENTER,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        zoom: ZOOM_LEVEL
+        center: DEFAULT.CENTER,
+        zoom: DEFAULT.ZOOM_LEVEL,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
       });
+
+      this.model.on("change", _.bind(this.centerMap, this));
     },
 
     centerMap: function(newCenter) {
-      this.map.setCenter(newCenter);
+      this.map.setCenter(this.model.midpoint());
     }
 
   });

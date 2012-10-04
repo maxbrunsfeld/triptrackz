@@ -28,13 +28,16 @@
 <script>
   (function() {
 
+    var route = new models.Route();
+
     var mapView = new views.Map({
-      el: document.getElementById("map_canvas")
+      el: document.getElementById("map_canvas"),
+      model: route
     });
 
     var pageView = new views.RoutePage({
       el: document.getElementById("main"),
-      mapView: mapView
+      model: route
     });
 
   })();

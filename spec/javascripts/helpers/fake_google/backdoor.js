@@ -39,15 +39,16 @@ google.backdoor = {
     });
   },
 
-  completeLastGeocodeRequest: function(location) {
-    var lastRequest = _.last(this.allGeocodeRequests);
+  completeGeocodeRequest: function(request, location) {
     var data = [
       {
-        geometry: { location: location }
+        geometry: {
+          location: location
+        }
       }
     ];
 
-    lastRequest.callback(data);
+    request.callback(data, "OK");
   }
 
 };
