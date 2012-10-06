@@ -39,6 +39,8 @@ describe("views.RoutePage", function() {
       var start, end;
 
       beforeEach(function() {
+        sinon.spy(model, "setEndpoints");
+
         start = new google.maps.LatLng(34, -120);
         end = new google.maps.LatLng(35, -122);
 
@@ -48,7 +50,7 @@ describe("views.RoutePage", function() {
       });
 
       it("sets the endpoints on the route model", function() {
-        expect(model.endpoints()).to.eql([start, end]);
+        expect(model.setEndpoints).to.have.been.calledWith(start, end);
       });
     });
   });

@@ -1,3 +1,3 @@
 google.maps.MapTypeId = {
-  ROADMAP: 1,
+  ROADMAP: 1
 };

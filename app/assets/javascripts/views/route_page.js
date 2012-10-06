@@ -11,12 +11,12 @@ views.RoutePage = Backbone.View.extend({
     var geocoder = new google.maps.Geocoder();
 
     this.locations = [];
-    var callback = _.bind(this.oneLocationReceived, this);
+    var callback = _.bind(this.locationReceived, this);
     geocoder.geocode({ address: startInput.val() }, callback);
     geocoder.geocode({ address: endInput.val() }, callback);
   },
 
-  oneLocationReceived: function(data, status) {
+  locationReceived: function(data, status) {
     this.locations.push(data[0].geometry.location);
     if (this.locations.length === 2) {
       this.allLocationsReceived();

@@ -1,29 +1,24 @@
-(function() {
+views.Map = Backbone.View.extend({
 
-  var DEFAULT = {
-    CENTER: new google.maps.LatLng(39, -103),
-    ZOOM_LEVEL: 4
-  };
+  initialize: function() {
+    this.map = new google.maps.Map(this.el, {
+      center: new google.maps.LatLng(39, -104),
+      zoom: 4,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
 
-  views.Map = Backbone.View.extend({
+    this.model.on("change", _.bind(this.centerMap, this));
+  },
 
-    initialize: function() {
-      this.map = new google.maps.Map(this.el, {
-        center: DEFAULT.CENTER,
-        zoom: DEFAULT.ZOOM_LEVEL,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      });
+  centerMap: function() {
+    var bounds = new google.maps.LatLngBounds(
+      this.model.southwestCorner(),
+      this.model.northeastCorner()
+    );
+    this.map.fitBounds(bounds);
+  }
 
-      this.model.on("change", _.bind(this.centerMap, this));
-    },
-
-    centerMap: function(newCenter) {
-      this.map.setCenter(this.model.midpoint());
-    }
-
-  });
-
-})();
+});
 
 
 // var directionsDisplay;

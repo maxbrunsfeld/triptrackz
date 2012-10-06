@@ -1,4 +1,4 @@
-google.maps.Geocoder = $.noop;
+google.maps.Geocoder = function() {};
 
 _.extend(google.maps.Geocoder.prototype, {
 

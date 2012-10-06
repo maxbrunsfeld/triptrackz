@@ -16,11 +16,13 @@ describe("views.Map", function() {
     });
 
     it("centers the map on the united states", function() {
-      var center = googleMap.center;
-      var denver = new google.maps.LatLng(39.7392, -104.9842);
+      var denverLat = 39.74;
+      var denverLng = -104.9842;
 
+      var center = googleMap.options.center;
       expect(center).to.be.an.instanceOf(google.maps.LatLng);
-      expect(google.backdoor.distance(center, denver)).to.be.lessThan(10);
+      expect(center.lat()).to.be.closeTo(denverLat, 1);
+      expect(center.lng()).to.be.closeTo(denverLng, 1);
     });
 
     it("sets a reasonable zoom level and map type", function() {
@@ -31,15 +33,12 @@ describe("views.Map", function() {
 
   describe("when the model changes its boundaries", function() {
     it("re-centers the map at the given coordinates", function() {
-      var newCenter = new google.maps.LatLng(40, -130);
+      var sw = new google.maps.LatLng(38, -104);
+      var ne = new google.maps.LatLng(39, -103);
+      model.setEndpoints(sw, ne);
 
-      sinon.stub(model, "midpoint", function() {
-        return newCenter;
-      });
-
-      model.trigger("change");
-
-      expect(googleMap.center).to.equal(newCenter);
+      var bounds = new google.maps.LatLngBounds(sw, ne);
+      expect(googleMap.fitBounds).to.have.been.calledWith(bounds);
     });
   });
 
