@@ -9,7 +9,7 @@ development:
   username: maxbrunsfeld
   host: 127.0.0.1
   port: 5432
-#  password: <password>
+  template: postgis_template
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -20,6 +20,7 @@ test:
   username: maxbrunsfeld
   host: 127.0.0.1
   port: 5432
+  template: postgis_template
 
 production:
   adapter: postgresql
@@ -27,3 +28,4 @@ production:
   username: maxbrunsfeld
   host: 127.0.0.1
   port: 5432
+  template: postgis_template

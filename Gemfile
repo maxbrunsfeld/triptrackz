@@ -6,6 +6,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'jquery-rails'
 gem 'pg'
+gem 'spatial_adapter', :git => "git://github.com/Empact/spatial_adapter.git", :require => "spatial_adapter/postgresql"
 
 group :test, :development do
   gem 'rspec'
