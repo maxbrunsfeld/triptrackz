@@ -7,7 +7,6 @@
   <%= yield :head %>
 
   <%= javascript_include_tag "vendor" %>
-  <%= javascript_include_tag google_maps_js_url %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -15,14 +14,6 @@
 
 <div id="header">
   <h1 id="title">Tripcast Store</h1>
-
-  <div class="right">
-    <span id="user">
-      <%= controller.current_user.name %>
-    </span>
-
-    <%= link_to "Log out", "/logout", { :id => "logout", :method => :delete } %>
-  </div>
 </div>
 
 <div id="main">

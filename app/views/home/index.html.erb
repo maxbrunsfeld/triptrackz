@@ -1,33 +1,18 @@
-<div id="header">
-  <h1 id="title">Tripcast Store</h1>
+<h1>Where are you going?</h1>
+<form id="route">
+  <input name="start" type="text" placeholder="Starting Place"/>
+  <input name="end" type="text" placeholder="Destination"/>
+  <button name="go">Go</button>
+</form>
+<div id="map_canvas"></div>
 
-  <div class="right">
-    <span id="user">
-      <%= controller.current_user.name %>
-    </span>
-
-    <%= link_to "Log out", "/logout", { :id => "logout", :method => :delete } %>
-  </div>
-</div>
-
-<div id="main">
-  <h1>Where are you going?</h1>
-  <form id="route">
-    <input name="start" type="text" placeholder="Starting Place"/>
-    <input name="end" type="text" placeholder="Destination"/>
-    <button name="go">Go</button>
-  </form>
-  <div id="map_canvas"></div>
-
-  <div class="tripcasts">
-    <h2>Most Popular Tripcasts</h2>
-    <ol></ol>
-  </div>
+<div class="tripcasts">
+  <h2>Most Popular Tripcasts</h2>
+  <ol></ol>
 </div>
 
 <script>
   (function() {
-
     var route = new models.Route();
 
     var mapView = new views.Map({
@@ -39,6 +24,5 @@
       el: document.getElementById("main"),
       model: route
     });
-
   })();
 </script>
