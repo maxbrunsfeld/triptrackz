@@ -6,9 +6,15 @@
 </form>
 <div id="map_canvas"></div>
 
-<div class="tripcasts">
-  <h2>Most Popular Tripcasts</h2>
-  <ol></ol>
+<div class="tripclips">
+  <h2>Most Popular Tripclips</h2>
+  <ol>
+    <% @tripclips.each do |tripclip| %>
+      <li class="tripclip">
+        <%= tripclip.name %>
+      </li>
+    <% end %>
+  </ol>
 </div>
 
 <script>

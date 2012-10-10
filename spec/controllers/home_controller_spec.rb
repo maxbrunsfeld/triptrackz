@@ -11,9 +11,9 @@ describe HomeController do
         controller.set_current_user(user)
       end
 
-      it "succeeds" do
+      it "redirects to the tripclips page" do
         get :index
-        response.should be_success
+        response.should redirect_to tripclips_path
       end
     end
 

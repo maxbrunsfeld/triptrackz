@@ -37,7 +37,7 @@ views.Map = Backbone.View.extend({
   // map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   // directionsDisplay.setMap(map);
 
-  // $.get("/tripcasts", function(tripcastsJson) {
+  // $.get("/tripclips", function(tripclipsJson) {
 
     // var list = $(".tripcasts ol");
 
