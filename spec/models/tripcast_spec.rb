@@ -2,6 +2,40 @@ require "spec_helper"
 
 describe Tripcast do
 
+  describe "#latitude / #longitude" do
+    let(:tripcast) do
+      Tripcast.new(
+        :name => "fun_tripcast",
+        :user_id => 1
+      )
+    end
+
+    it "reads and writes the x/y coordinate of the location" do
+      tripcast.latitude.should be_nil
+      tripcast.longitude.should be_nil
+
+      tripcast.latitude = 34.0
+      tripcast.longitude = -122.5
+
+      tripcast.save!
+      tripcast.reload
+
+      tripcast.latitude.should == 34.0
+      tripcast.longitude.should == -122.5
+    end
+
+    it "deals with string coordinates" do
+      tripcast.latitude = "34.0"
+      tripcast.longitude = "-122.5"
+
+      tripcast.save!
+      tripcast.reload
+
+      tripcast.latitude.should == 34.0
+      tripcast.longitude.should == -122.5
+    end
+  end
+
   describe ".within_box(southwest, northeast)" do
     let(:points) do
       {

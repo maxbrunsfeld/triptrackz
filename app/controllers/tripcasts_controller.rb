@@ -1,5 +1,15 @@
 class TripcastsController < ApplicationController
 
+  def new
+    @tripcast = Tripcast.new
+  end
+
+  def create
+    data = params[:tripcast]
+    current_user.tripcasts.create(data)
+    head :ok
+  end
+
   def index
     render :json => [
       {

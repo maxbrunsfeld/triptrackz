@@ -1,0 +1,11 @@
+<%= form_for @tripcast do |f| %>
+  <%= f.label :name, 'Name' %>:
+  <%= f.text_field :name %><br />
+
+  <%= f.label :latitude, 'Latitude' %>:
+  <%= f.text_field :latitude %><br/>
+  <%= f.label :longitude, 'Longitude' %>:
+  <%= f.text_field :longitude %><br/>
+
+  <%= f.submit %>
+<% end %>
