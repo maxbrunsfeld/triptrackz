@@ -14,10 +14,6 @@ describe "picking a route", :type => :request do
       end
     end
 
-    it "brings up the route on a map" do
-      map = google_map("#map_canvas")
-      map["center"]["lat"].should be_present
-      map["center"]["lng"].should be_present
-    end
+    it "brings up the route on a map"
   end
 end
