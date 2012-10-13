@@ -1,23 +1,29 @@
 models.Region = Backbone.Model.extend({
 
-  setEndpoints: function(start, end) {
-    this.start = start;
-    this.end = end;
+  setPoints: function(points) {
+    this.points = points;
     this.trigger("change");
   },
 
   southwestCorner: function() {
     return new google.maps.LatLng(
-      Math.min(this.start.lat(), this.end.lat()),
-      Math.min(this.start.lng(), this.end.lng())
+      _.min(this.latitudes()),
+      _.min(this.longitudes())
     );
   },
 
   northeastCorner: function() {
     return new google.maps.LatLng(
-      Math.max(this.start.lat(), this.end.lat()),
-      Math.max(this.start.lng(), this.end.lng())
+      _.max(this.latitudes()),
+      _.max(this.longitudes())
     );
-  }
+  },
 
+  latitudes: function() {
+    return _.map(this.points, function(point) { return point.lat(); });
+  },
+
+  longitudes: function(){
+    return _.map(this.points, function(point) { return point.lng(); });
+  }
 });

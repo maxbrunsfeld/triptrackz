@@ -24,7 +24,7 @@ views.Address = Backbone.View.extend({
   },
 
   allLocationsReceived: function() {
-    this.model.setEndpoints(this.locations[0], this.locations[1]);
+    this.model.setPoints([this.locations[0], this.locations[1]]);
   }
 
 });
