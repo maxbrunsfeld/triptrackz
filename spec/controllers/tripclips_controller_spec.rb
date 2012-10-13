@@ -2,19 +2,42 @@ require "spec_helper"
 
 describe TripclipsController do
   describe "#index" do
-    it "sets up a list of tripclips to be rendered" do
-      2.times do |i|
-        Tripclip.create!(
-          :name => "tripclip_#{i}",
-          :user_id => 1,
-          :latitude => 34 + i,
-          :longitude => -122 + i
-        )
+    before do
+      @tripclip1 = Tripclip.create!(
+        :name => "cheeto tour",
+        :user_id => 1,
+        :latitude => 34,
+        :longitude => -122
+      )
+      @tripclip2 = Tripclip.create!(
+        :name => "dorito tour",
+        :user_id => 1,
+        :latitude => 34.2,
+        :longitude => -122.2
+      )
+    end
+
+    context "when html is requested" do
+      it "sets up a list of tripclips to be rendered" do
+        get :index
+        assigns[:tripclips].should == Tripclip.all
+        response.should render_template("tripclips/index")
       end
+    end
 
-      get :index
+    context "when json is requested" do
+      it "returns a list of tripclips as json" do
+        get :index, {:format => :json}
+        json = JSON.parse(response.body)
 
-      assigns[:tripclips].should == Tripclip.all
+        names = json.map {|hash| hash["name"]}
+        latitudes = json.map {|hash| hash["latitude"]}
+        longitudes = json.map {|hash| hash["longitude"]}
+
+        names.should include(@tripclip1.name, @tripclip2.name)
+        latitudes.should include(@tripclip1.latitude, @tripclip2.latitude)
+        longitudes.should include(@tripclip1.longitude, @tripclip2.longitude)
+      end
     end
   end
 
