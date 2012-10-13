@@ -1,5 +1,5 @@
-describe("views.RoutePage", function() {
-  var routePage, form, startInput, endInput, goButton, model;
+describe("views.Address", function() {
+  var address, form, startInput, endInput, goButton, model;
 
   beforeEach(function() {
     startInput = $("<input/>").attr("name", "start");
@@ -8,9 +8,9 @@ describe("views.RoutePage", function() {
 
     form = $("<form/>").append(startInput, endInput, goButton);
 
-    model = new models.Route();
+    model = new models.Region();
 
-    routePage = new views.RoutePage({
+    address = new views.Address({
       el: $("<div/>").append(form),
       model: model
     }); 

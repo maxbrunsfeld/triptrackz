@@ -19,16 +19,16 @@
 
 <script>
   (function() {
-    var route = new models.Route();
+    var region = new models.Region();
 
     var mapView = new views.Map({
       el: document.getElementById("map_canvas"),
-      model: route
+      model: region
     });
 
-    var pageView = new views.RoutePage({
+    var addressView = new views.Address({
       el: document.getElementById("main"),
-      model: route
+      model: region
     });
   })();
 </script>

@@ -1,4 +1,4 @@
-models.Route = Backbone.Model.extend({
+models.Region = Backbone.Model.extend({
 
   setEndpoints: function(start, end) {
     this.start = start;
@@ -19,4 +19,5 @@ models.Route = Backbone.Model.extend({
       Math.max(this.start.lng(), this.end.lng())
     );
   }
+
 });

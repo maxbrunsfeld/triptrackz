@@ -1,8 +1,8 @@
-describe("models.Route", function() {
+describe("models.Region", function() {
   var model;
 
   beforeEach(function() {
-    model = new models.Route();
+    model = new models.Region();
   });
 
   describe("#setEndpoints", function() {

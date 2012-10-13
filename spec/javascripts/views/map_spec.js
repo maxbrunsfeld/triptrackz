@@ -3,7 +3,7 @@ describe("views.Map", function() {
 
   beforeEach(function() {
     el = document.createElement("div");
-    model = new models.Route();
+    model = new models.Region();
     view = new views.Map({ el: el, model: model });
     googleMap = _.last(google.backdoor.allMaps);
   });

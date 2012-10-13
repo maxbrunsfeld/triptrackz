@@ -1,4 +1,4 @@
-views.RoutePage = Backbone.View.extend({
+views.Address = Backbone.View.extend({
 
   events: {
     "click button[name='go']": "formSubmitted"
