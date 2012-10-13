@@ -1,12 +1,15 @@
 <h1>Where are you going?</h1>
-<form id="route">
+<form id="location">
   <input name="start" type="text" placeholder="Starting Place"/>
   <input name="end" type="text" placeholder="Destination"/>
   <button name="go">Go</button>
 </form>
-<div id="map_canvas"></div>
 
-<div class="tripclips">
+<div class="left-section">
+  <div id="map-canvas"></div>
+</div>
+
+<div class="right-section">
   <h2>Most Popular Tripclips</h2>
   <ol>
     <% @tripclips.each do |tripclip| %>
@@ -22,7 +25,7 @@
     var region = new models.Region();
 
     var mapView = new views.Map({
-      el: document.getElementById("map_canvas"),
+      el: document.getElementById("map-canvas"),
       model: region
     });
 

@@ -1,11 +1,33 @@
-<%= form_for @tripclip do |f| %>
-  <%= f.label :name, 'Name' %>:
-  <%= f.text_field :name %><br />
+<h1>Where does your story take place?</h1>
+<form id="location">
+  <input name="location" type="text" placeholder="Location"/>
+  <button name="go">Go</button>
+</form>
 
-  <%= f.label :latitude, 'Latitude' %>:
-  <%= f.text_field :latitude %><br/>
-  <%= f.label :longitude, 'Longitude' %>:
-  <%= f.text_field :longitude %><br/>
+<div class="left-section">
+  <div id="map-canvas"></div>
+</div>
 
-  <%= f.submit %>
-<% end %>
+<div class="right-section">
+  <%= form_for @tripclip do |f| %>
+    <%= f.label :name, 'Name' %>:
+    <%= f.text_field :name %><br />
+    <%= f.submit %>
+  <% end %>
+</div>
+
+<script>
+  (function() {
+    var region = new models.Region();
+
+    var mapView = new views.Map({
+      el: document.getElementById("map-canvas"),
+      model: region
+    });
+
+    var addressView = new views.Address({
+      el: document.getElementById("location"),
+      model: region
+    });
+  })();
+</script>
