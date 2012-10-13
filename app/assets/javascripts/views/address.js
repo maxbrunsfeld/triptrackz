@@ -6,25 +6,26 @@ views.Address = Backbone.View.extend({
 
   formSubmitted: function(e) {
     e.preventDefault();
-    var startInput = this.$("input[name='start']");
-    var endInput = this.$("input[name='end']");
+    var inputs = this.$("input");
     var geocoder = new google.maps.Geocoder();
 
+    this.numLocations = inputs.length;
     this.locations = [];
     var callback = _.bind(this.locationReceived, this);
-    geocoder.geocode({ address: startInput.val() }, callback);
-    geocoder.geocode({ address: endInput.val() }, callback);
+    _.each(inputs, function(input) {
+      geocoder.geocode({ address: $(input).val() }, callback);
+    });
   },
 
   locationReceived: function(data, status) {
     this.locations.push(data[0].geometry.location);
-    if (this.locations.length === 2) {
+    if (this.locations.length === this.numLocations) {
       this.allLocationsReceived();
     }
   },
 
   allLocationsReceived: function() {
-    this.model.setPoints([this.locations[0], this.locations[1]]);
+    this.model.setPoints(this.locations);
   }
 
 });
