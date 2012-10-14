@@ -1,5 +1,6 @@
 class Tripclip < ActiveRecord::Base
   attr_accessible :name, :user_id, :location, :latitude, :longitude
+  belongs_to :user
 
   class << self
 

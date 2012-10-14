@@ -9,6 +9,8 @@ gem 'pg'
 gem 'spatial_adapter', :git => "git://github.com/Empact/spatial_adapter.git", :require => "spatial_adapter/postgresql"
 
 group :test, :development do
+  gem 'fixture_builder'
+  gem 'factory_girl'
   gem 'rspec'
   gem 'rspec-rails', '~> 2.0'
 end
