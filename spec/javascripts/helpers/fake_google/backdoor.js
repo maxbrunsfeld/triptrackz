@@ -1,13 +1,18 @@
 google.backdoor = {
 
   allMaps: [],
+  allMarkers: [],
   allGeocodeRequests: [],
 
-  initalizeMap: function(map) {
+  mapCreated: function(map) {
     this.allMaps.push(map);
   },
 
-  geocode: function(options, callback) {
+  markerCreated: function(marker) {
+    this.allMarkers.push(marker);
+  },
+
+  geocodeRequested: function(options, callback) {
     this.allGeocodeRequests.push({
       options: options,
       callback: callback
@@ -24,6 +29,12 @@ google.backdoor = {
     ];
 
     request.callback(data, "OK");
+  },
+
+  clear: function() {
+    google.backdoor.allGeocodeRequests = [];
+    google.backdoor.allMaps = [];
+    google.backdoor.allMarkers = [];
   }
 
 };
