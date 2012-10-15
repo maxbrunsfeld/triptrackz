@@ -6,7 +6,7 @@
 
   <form id="tripclip">
     <input name="name" type="text" placeholder="Name"/>
-    <button name="create">Create Tripclip</button>
+    <button name="submit">Create Tripclip</button>
   </form>
 </div>
 
@@ -16,7 +16,9 @@
 
 <script>
   (function() {
+
     var region = new models.Region();
+    var tripclip = new models.Tripclip({ region: region })
 
     var mapView = new views.Map({
       el: document.getElementById("map-canvas"),
@@ -32,5 +34,11 @@
       el: document.getElementById("location"),
       model: region
     });
+
+    var tripclipForm = new views.TripclipForm({
+      el: document.getElementById("tripclip"),
+      model: tripclip
+    });
+
   })();
 </script>

@@ -2,8 +2,8 @@ describe("views.Address", function() {
   var address, form, startInput, endInput, goButton, model;
 
   beforeEach(function() {
-    startInput = $("<input/>").attr("name", "start");
-    endInput = $("<input/>").attr("name", "end");
+    startInput = $("<input/>");
+    endInput = $("<input/>");
     goButton = $("<button/>").attr("name", "go");
     form = $("<form/>").append(startInput, goButton);
 
