@@ -1,15 +1,13 @@
-
 <div class="left-section">
-  <h1>Where does your story take place?</h1>
   <form id="location">
     <input name="location" type="text" placeholder="Location"/>
     <button name="go">Go</button>
   </form>
 
-  <%= form_for @tripclip do |f| %>
-    <%= f.text_field :name %><br />
-    <%= f.submit %>
-  <% end %>
+  <form id="tripclip">
+    <input name="name" type="text" placeholder="Name"/>
+    <button name="create">Create Tripclip</button>
+  </form>
 </div>
 
 <div class="right-section">
