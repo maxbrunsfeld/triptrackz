@@ -3,9 +3,13 @@ google.maps.Marker = function(options) {
   google.backdoor.markerCreated(this);
 };
 
-_.extend(google.maps.Marker.prototype, {
+_.extend(google.maps.Marker.prototype, Backbone.Events, {
   getMap: function() {
     return this.options.map;
+  },
+
+  setPosition: function(position) {
+    this.options.position = position;
   },
 
   getPosition: function() {

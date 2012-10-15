@@ -7,13 +7,7 @@ views.Map = Backbone.View.extend({
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    this.marker = new google.maps.Marker({
-      map: this.map,
-      draggable: true,
-      position: new google.maps.LatLng(39, -104)
-    });
-
-    this.model.on("change", _.bind(this.centerMap, this));
+    this.model.on("change", this.centerMap, this);
   },
 
   centerMap: function() {

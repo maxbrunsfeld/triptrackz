@@ -1,19 +1,19 @@
-<h1>Where does your story take place?</h1>
-<form id="location">
-  <input name="location" type="text" placeholder="Location"/>
-  <button name="go">Go</button>
-</form>
 
 <div class="left-section">
-  <div id="map-canvas"></div>
-</div>
+  <h1>Where does your story take place?</h1>
+  <form id="location">
+    <input name="location" type="text" placeholder="Location"/>
+    <button name="go">Go</button>
+  </form>
 
-<div class="right-section">
   <%= form_for @tripclip do |f| %>
-    <%= f.label :name, 'Name' %>:
     <%= f.text_field :name %><br />
     <%= f.submit %>
   <% end %>
+</div>
+
+<div class="right-section">
+  <div id="map-canvas"></div>
 </div>
 
 <script>
@@ -22,6 +22,11 @@
 
     var mapView = new views.Map({
       el: document.getElementById("map-canvas"),
+      model: region
+    });
+
+    var markerView = new views.Marker({
+      mapView: mapView,
       model: region
     });
 

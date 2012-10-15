@@ -25,18 +25,6 @@ describe("views.Map", function() {
       expect(center.lng()).to.be.closeTo(denverLng, 1);
     });
 
-    it("creates a marker on the center of the map", function() {
-      expect(google.backdoor.allMarkers.length).to.eql(1);
-      var marker = google.backdoor.allMarkers[0];
-      expect(marker.getMap()).to.equal(googleMap);
-      expect(marker.getPosition()).to.eql(googleMap.getCenter());
-    });
-
-    it("makes the marker draggable", function() {
-      var marker = google.backdoor.allMarkers[0];
-      expect(marker.getDraggable()).to.eql(true);
-    });
-
     it("sets a reasonable zoom level and map type", function() {
       expect(googleMap.options.zoom).to.be.within(3, 6);
       expect(googleMap.options.mapTypeId).to.equal(google.maps.MapTypeId.ROADMAP);

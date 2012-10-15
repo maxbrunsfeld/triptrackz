@@ -4,8 +4,8 @@ google.maps.event = {
     object.on(eventName, callback);
   },
 
-  trigger: function(object, eventName) {
-    object.trigger(eventName);
+  trigger: function(object, eventName, event) {
+    object.trigger(eventName, event);
   }
 
 };
