@@ -29,7 +29,10 @@ describe("views.Marker", function() {
   describe("when the model changes", function() {
     it("updates the position of the marker", function() {
       var position = new google.maps.LatLng(34, 102);
+
       model.setPoints([position]);
+      model.trigger("change");
+
       expect(marker.getPosition()).to.eql(position)
     });
   });

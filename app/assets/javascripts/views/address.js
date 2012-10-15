@@ -4,28 +4,24 @@ views.Address = Backbone.View.extend({
     "click button[name='go']": "formSubmitted"
   },
 
+  initialize: function() {
+    this.model.on("change", this.addressChanged, this);
+  },
+
   formSubmitted: function(e) {
     e.preventDefault();
     var inputs = this.$("input");
-    var geocoder = new google.maps.Geocoder();
-
-    this.numLocations = inputs.length;
-    this.locations = [];
-    var callback = _.bind(this.locationReceived, this);
-    _.each(inputs, function(input) {
-      geocoder.geocode({ address: $(input).val() }, callback);
+    var addresses = _.map(inputs, function(input) {
+      return $(input).val();
     });
+    this.model.setAddresses(addresses);
   },
 
-  locationReceived: function(data, status) {
-    this.locations.push(data[0].geometry.location);
-    if (this.locations.length === this.numLocations) {
-      this.allLocationsReceived();
-    }
-  },
-
-  allLocationsReceived: function() {
-    this.model.setPoints(this.locations);
+  addressChanged: function() {
+    var inputs = this.$("input");
+    _.each(this.model.addresses, function(address, i) {
+      inputs.eq(i).val(address);
+    });
   }
 
 });

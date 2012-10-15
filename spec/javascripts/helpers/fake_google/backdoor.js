@@ -19,16 +19,16 @@ google.backdoor = {
     });
   },
 
-  completeGeocodeRequest: function(request, location) {
-    var data = [
-      {
-        geometry: {
-          location: location
-        }
+  completeGeocodeRequest: function(request, data) {
+    _.defaults(data, {
+      formatted_address: "",
+      geometry: {
+        location: null,
+        bounds: null
       }
-    ];
+    });
 
-    request.callback(data, "OK");
+    request.callback([ data ], "OK");
   },
 
   clear: function() {

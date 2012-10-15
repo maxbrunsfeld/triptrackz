@@ -35,7 +35,9 @@ describe("views.Map", function() {
     it("re-centers the map at the given coordinates", function() {
       var sw = new google.maps.LatLng(38, -104);
       var ne = new google.maps.LatLng(39, -103);
+
       model.setPoints([sw, ne]);
+      model.trigger("change");
 
       var bounds = new google.maps.LatLngBounds(sw, ne);
       expect(googleMap.fitBounds).to.have.been.calledWith(bounds);
