@@ -5,29 +5,31 @@ describe("views.Map", function() {
     el = document.createElement("div");
     model = new models.Region({ points: [] });
     view = new views.Map({ el: el, model: model });
-    googleMap = _.last(google.backdoor.allMaps);
   });
 
   describe("#initialize", function() {
-    it("creates a google map with the view's element", function() {
+    it("creates one google map", function() {
       expect(google.backdoor.allMaps.length).to.eql(1);
-      expect(googleMap).to.exist
-      expect(googleMap.el).to.equal(el);
+      expect(view.map).to.equal(google.backdoor.allMaps[0]);
+    });
+
+    it("creates a google map with the view's element", function() {
+      expect(view.map.el).to.equal(el);
     });
 
     it("centers the map on the united states", function() {
       var denverLat = 39.74;
       var denverLng = -104.9842;
 
-      var center = googleMap.options.center;
+      var center = view.map.options.center;
       expect(center).to.be.an.instanceOf(google.maps.LatLng);
       expect(center.lat()).to.be.closeTo(denverLat, 1);
       expect(center.lng()).to.be.closeTo(denverLng, 1);
     });
 
     it("sets a reasonable zoom level and map type", function() {
-      expect(googleMap.options.zoom).to.be.within(3, 6);
-      expect(googleMap.options.mapTypeId).to.equal(google.maps.MapTypeId.ROADMAP);
+      expect(view.map.options.zoom).to.be.within(3, 6);
+      expect(view.map.options.mapTypeId).to.equal(google.maps.MapTypeId.ROADMAP);
     });
   });
 
@@ -40,7 +42,7 @@ describe("views.Map", function() {
       model.boundaries = bounds;
       model.trigger("change");
 
-      expect(googleMap.fitBounds).to.have.been.calledWith(bounds);
+      expect(view.map.fitBounds).to.have.been.calledWith(bounds);
     });
   });
 
