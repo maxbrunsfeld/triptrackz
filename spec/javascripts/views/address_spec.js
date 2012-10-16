@@ -1,24 +1,25 @@
 describe("views.Address", function() {
-  var address, form, startInput, endInput, goButton, model;
+  var view, point1, form, input1, button;
 
   beforeEach(function() {
-    startInput = $("<input/>");
-    endInput = $("<input/>");
-    goButton = $("<button/>").attr("name", "go");
-    form = $("<form/>").append(startInput, goButton);
+    input1 = $("<input/>");
+    button = $("<button/>").attr("name", "go");
+    form = $("<form/>").append(input1, button);
 
-    model = new models.Region();
-    sinon.spy(model, "setAddresses");
+    point1 = new models.Point();
   });
 
   describe("when the view is initialized with two input fields", function() {
-    beforeEach(function() {
-      form.append(endInput);
+    var point2, input2;
 
-      address = new views.Address({
-        el: $("<div/>").append(form),
-        model: model
-      });
+    beforeEach(function() {
+      point2 = new models.Point();
+      input2 = $("<input/>");
+      form.append(input2);
+      sinon.spy(point1, "setAddress");
+      sinon.spy(point2, "setAddress");
+
+      view = new views.Address({ el: form, models: [point1, point2] });
     });
 
     describe("when the user types a start and end address and clicks 'go'", function() {
@@ -28,37 +29,36 @@ describe("views.Address", function() {
         address1 = "Chicago, IL";
         address2 = "St Louis, MO";
 
-        startInput.val(address1);
-        endInput.val(address2);
-        goButton.click();
+        input1.val(address1);
+        input2.val(address2);
+        button.click();
       });
 
-      it("sets the addresses on the region model", function() {
-        expect(model.setAddresses).to.have.been.calledWith([address1, address2]);
+      it("sets the addresses on the point models", function() {
+        expect(point1.setAddress).to.have.been.calledWith(address1);
+        expect(point2.setAddress).to.have.been.calledWith(address2);
       });
     });
   });
 
   describe("when the view is initialized with one input field", function() {
+    var address;
+
     beforeEach(function() {
-      address = new views.Address({
-        el: $("<div/>").append(form),
-        model: model
-      });
+      sinon.spy(point1, "setAddress");
+      view = new views.Address({ el: form, models: [point1] });
     });
 
     describe("when the user types an address and clicks 'go'", function() {
-      var address1;
 
       beforeEach(function() {
-        address1 = "Chicago, IL";
-
-        startInput.val(address1);
-        goButton.click();
+        address = "Chicago, IL";
+        input1.val(address);
+        button.click();
       });
 
       it("sets the address on the region model", function() {
-        expect(model.setAddresses).to.have.been.calledWith([ address1 ]);
+        expect(point1.setAddress).to.have.been.calledWith(address);
       });
     });
 
@@ -67,12 +67,12 @@ describe("views.Address", function() {
 
       beforeEach(function() {
         address = "San Francisco, CA";
-        model.setAddresses([ address ]);
-        model.trigger("change");
+        point1.setAddress([ address ]);
+        point1.trigger("change");
       });
 
       it("displays the new address in the input field", function() {
-        expect(startInput.val()).to.equal(address);
+        expect(input1.val()).to.equal(address);
       });
     });
   });

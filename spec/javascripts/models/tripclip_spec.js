@@ -1,9 +1,9 @@
 describe("models.Tripclip", function() {
-  var region, model;
+  var point, model;
 
   beforeEach(function() {
-    region = new models.Region();
-    model = new models.Tripclip({ region: region });
+    point = new models.Point();
+    model = new models.Tripclip({ point: point });
   });
 
   describe("#url", function() {
@@ -22,8 +22,8 @@ describe("models.Tripclip", function() {
       name = "Mt Diablo Fiasco";
 
       model.set({ name: name });
-      region.points = [ new google.maps.LatLng(lat, lng) ];
-      region.addresses = [ address ];
+      point.location = new google.maps.LatLng(lat, lng);
+      point.address = address;
 
       json = model.toJSON();
     });

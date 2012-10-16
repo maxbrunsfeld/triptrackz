@@ -17,8 +17,9 @@
 <script>
   (function() {
 
-    var region = new models.Region();
-    var tripclip = new models.Tripclip({ region: region })
+    var point = new models.Point();
+    var region = new models.Region({ points: [point] });
+    var tripclip = new models.Tripclip({ location: point })
 
     var mapView = new views.Map({
       el: document.getElementById("map-canvas"),
@@ -27,12 +28,12 @@
 
     var markerView = new views.Marker({
       mapView: mapView,
-      model: region
+      model: point
     });
 
     var addressView = new views.Address({
       el: document.getElementById("location"),
-      model: region
+      models: [point]
     });
 
     var tripclipForm = new views.TripclipForm({

@@ -22,7 +22,8 @@
 
 <script>
   (function() {
-    var region = new models.Region();
+    var points = [ new models.Point(), new models.Point() ];
+    var region = new models.Region({ points: points });
 
     var mapView = new views.Map({
       el: document.getElementById("map-canvas"),
@@ -31,7 +32,7 @@
 
     var addressView = new views.Address({
       el: document.getElementById("main"),
-      model: region
+      models: points
     });
   })();
 </script>

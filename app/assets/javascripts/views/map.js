@@ -7,11 +7,11 @@ views.Map = Backbone.View.extend({
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    this.model.on("change", this.centerMap, this);
+    this.model.on("change", this.regionChanged, this);
   },
 
-  centerMap: function() {
-    this.map.fitBounds(this.model.boundaries());
+  regionChanged: function() {
+    this.map.fitBounds(this.model.boundaries);
   }
 
 });

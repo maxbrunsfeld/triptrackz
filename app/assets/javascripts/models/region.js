@@ -1,79 +1,68 @@
 (function() {
 
-  var GEOCODER = new google.maps.Geocoder();
   var PADDING = 0.025;
 
   models.Region = Backbone.Model.extend({
-    setPoints: function(points) {
-      this.points = points;
-      this.addresses = [];
-
-      var callback = _.bind(this.addressReceived, this);
+    initialize: function(options) {
+      this.points = options.points;
       _.each(this.points, function(point) {
-        GEOCODER.geocode({ location: point }, callback);
-      });
+        point.on("change", this.pointChanged, this);
+      }, this);
     },
 
-    setAddresses: function(addresses) {
-      this.addresses = addresses;
-      this.points = [];
-
-      var callback = _.bind(this.locationReceived, this);
-      _.each(this.addresses, function(address) {
-        GEOCODER.geocode({ address: address }, callback);
-      });
-    },
-
-    addressReceived: function(data) {
-      this.addresses.push(data[0].formatted_address);
-      this.geocodeReceived();
-    },
-
-    locationReceived: function(data) {
-      this.points.push(data[0].geometry.location);
-      this.geocodeReceived();
-    },
-
-    geocodeReceived: function() {
-      if (this.points.length === this.addresses.length) {
-        this.trigger("change");
+    pointChanged: function(point, two) {
+      if (this.anyPointIsOutsideBoundaries()) {
+        this.adjustBoundaries()
       }
     },
 
-    boundaries: function() {
-      var sw, ne;
-      if (this.points.length === 1) {
-        ne = new google.maps.LatLng(
-          this.points[0].lat() + PADDING,
-          this.points[0].lng() + PADDING
-        );
-        sw = new google.maps.LatLng(
-          this.points[0].lat() - PADDING,
-          this.points[0].lng() - PADDING
-        );
-      } else {
-        sw = new google.maps.LatLng(
-          _.min(this.latitudes()),
-          _.min(this.longitudes())
-        );
-        ne = new google.maps.LatLng(
-          _.max(this.latitudes()),
-          _.max(this.longitudes())
-        );
-      }
+    anyPointIsOutsideBoundaries: function() {
+      if (!this.boundaries) return true;
+      return _.any(this.points, function(point) {
+        return !this.boundaries.contains(point.location);
+      }, this);
+    },
 
-      return new google.maps.LatLngBounds(sw, ne);
+    adjustBoundaries: function() {
+      var padding = (this.points.length === 1) ? PADDING : 0;
+      this.boundaries = new google.maps.LatLngBounds(
+        new google.maps.LatLng(
+          this.south() - padding,
+          this.west() - padding
+        ),
+        new google.maps.LatLng(
+          this.north() + padding,
+          this.east() + padding
+        )
+      );
+      this.trigger("change");
+    },
+
+    north: function() {
+      return _.max(this.latitudes());
+    },
+
+    south: function() {
+      return _.min(this.latitudes());
+    },
+
+    east: function() {
+      return _.max(this.longitudes());
+    },
+
+    west: function() {
+      return _.min(this.longitudes());
     },
 
     latitudes: function() {
       return _.map(this.points, function(point) {
-        return point.lat();
+        return point.location.lat();
       });
     },
 
     longitudes: function() {
       return _.map(this.points, function(point) {
-        return point.lng();
+        return point.location.lng();
       });
     }
   });

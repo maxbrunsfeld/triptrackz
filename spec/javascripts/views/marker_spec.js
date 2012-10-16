@@ -2,8 +2,9 @@ describe("views.Marker", function() {
   var view, mapView, model, marker;
 
   beforeEach(function() {
-    model = new models.Region();
-    mapView = new views.Map({ model: model });
+    model = new models.Point();
+    var region = new models.Region( points: [model] });
+    mapView = new views.Map({ model: region });
     view = new views.Marker({ mapView: mapView, model: model });
     marker = google.backdoor.allMarkers[0];
   });
@@ -28,23 +29,23 @@ describe("views.Marker", function() {
 
   describe("when the model changes", function() {
     it("updates the position of the marker", function() {
-      var position = new google.maps.LatLng(34, 102);
+      var location = new google.maps.LatLng(34, 102);
 
-      model.setPoints([position]);
+      model.setLocation(location);
       model.trigger("change");
 
-      expect(marker.getPosition()).to.eql(position)
+      expect(marker.getPosition()).to.eql(location)
     });
   });
 
   describe("when the marker is dragged by the user", function() {
     it("updates the model with the marker's new position", function() {
-      var newPosition = new google.maps.LatLng(50, -150);
-      var fakeDragEvent = { latLng: newPosition };
+      var location = new google.maps.LatLng(50, -150);
+      var fakeDragEvent = { latLng: location };
 
       google.maps.event.trigger(marker, "dragend", fakeDragEvent);
 
-      expect(model.points).to.eql([ newPosition ]);
+      expect(model.location).to.equal(location);
     });
   });
 });

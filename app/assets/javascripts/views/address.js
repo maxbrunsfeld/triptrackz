@@ -1,26 +1,25 @@
 views.Address = Backbone.View.extend({
 
   events: {
-    "click button[name='go']": "formSubmitted"
+    "click button": "formSubmitted"
   },
 
-  initialize: function() {
-    this.model.on("change", this.addressChanged, this);
+  initialize: function(options) {
+    this.models = options.models;
+    var inputs = this.$("input");
+
+    _.each(this.models, function(model, i) {
+      model.on("change", function() {
+        inputs.eq(i).val(model.address);
+      });
+    });
   },
 
   formSubmitted: function(e) {
     e.preventDefault();
     var inputs = this.$("input");
-    var addresses = _.map(inputs, function(input) {
-      return $(input).val();
-    });
-    this.model.setAddresses(addresses);
-  },
-
-  addressChanged: function() {
-    var inputs = this.$("input");
-    _.each(this.model.addresses, function(address, i) {
-      inputs.eq(i).val(address);
+    _.each(this.models, function(model, i) {
+      model.setAddress(inputs.eq(i).val());
     });
   }
 

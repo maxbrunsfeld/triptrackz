@@ -18,11 +18,10 @@ views.Marker = Backbone.View.extend({
   },
 
   moveMarker: function() {
-    this.marker.setPosition(this.model.points[0]);
+    this.marker.setPosition(this.model.location);
   },
 
   markerMoved: function(e) {
-    var position = e.latLng;
-    this.model.setPoints([ position ]);
+    this.model.setLocation(e.latLng);
   }
 });

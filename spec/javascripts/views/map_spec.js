@@ -3,7 +3,7 @@ describe("views.Map", function() {
 
   beforeEach(function() {
     el = document.createElement("div");
-    model = new models.Region();
+    model = new models.Region({ points: [] });
     view = new views.Map({ el: el, model: model });
     googleMap = _.last(google.backdoor.allMaps);
   });
@@ -35,11 +35,11 @@ describe("views.Map", function() {
     it("re-centers the map at the given coordinates", function() {
       var sw = new google.maps.LatLng(38, -104);
       var ne = new google.maps.LatLng(39, -103);
+      var bounds = new google.maps.LatLngBounds(sw, ne);
 
-      model.setPoints([sw, ne]);
+      model.boundaries = bounds;
       model.trigger("change");
 
-      var bounds = new google.maps.LatLngBounds(sw, ne);
       expect(googleMap.fitBounds).to.have.been.calledWith(bounds);
     });
   });

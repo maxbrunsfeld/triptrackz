@@ -3,15 +3,15 @@ models.Tripclip = Backbone.Model.extend({
   url: "/tripclips",
 
   initialize: function(attrs) {
-    this.region = attrs && attrs.region;
+    this.point = attrs && attrs.point;
   },
 
   toJSON: function() {
     return {
       name: this.get("name"),
-      latitude: this.region.latitudes()[0],
-      longitude: this.region.longitudes()[0],
-      address: this.region.addresses[0]
+      latitude: this.point.location.lat(),
+      longitude: this.point.location.lng(),
+      address: this.point.address
     };
   }
 
