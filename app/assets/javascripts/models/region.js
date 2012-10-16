@@ -10,10 +10,8 @@
       }, this);
     },
 
-    pointChanged: function(point, two) {
-      if (this.anyPointIsOutsideBoundaries()) {
-        this.adjustBoundaries()
-      }
+    pointChanged: function() {
+      this.adjustBoundaries()
     },
 
     anyPointIsOutsideBoundaries: function() {

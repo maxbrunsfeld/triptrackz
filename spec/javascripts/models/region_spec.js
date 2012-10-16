@@ -46,7 +46,7 @@ describe("models.Region", function() {
       model.on("change", changeSpy);
     });
 
-    context("when the location is inside the current boundaries", function() {
+    context.skip("when the location is inside the current boundaries", function() {
       beforeEach(function() {
         point1.location = new google.maps.LatLng(0, 1);
         point1.trigger("change");
