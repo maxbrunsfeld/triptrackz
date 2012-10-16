@@ -11,6 +11,16 @@ _.extend(google.maps.LatLngBounds.prototype, {
 
   getSouthwest: function() {
     return this.sw;
+  },
+
+  // won't work with boundaries that cross 180 degrees longitude
+  contains: function(point) {
+    return (
+      this.ne.lat() >= point.lat() &&
+      this.ne.lng() >= point.lng() &&
+      this.sw.lat() <= point.lat() &&
+      this.sw.lng() <= point.lng()
+    );
   }
   
 });
