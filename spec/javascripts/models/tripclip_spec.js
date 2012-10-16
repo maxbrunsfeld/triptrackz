@@ -3,12 +3,12 @@ describe("models.Tripclip", function() {
 
   beforeEach(function() {
     region = new models.Region();
-    model = new models.Tripclip({}, { region: region });
+    model = new models.Tripclip({ region: region });
   });
 
   describe("#url", function() {
     it("POSTs to the tripclips url", function() {
-      expect(model.url).to.equal("tripclips");
+      expect(model.url).to.equal("/tripclips");
     });
   });
 
