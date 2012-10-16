@@ -40,32 +40,29 @@
       }
     },
 
-    southwestCorner: function() {
-      if (this.points.length > 1) {
-        return new google.maps.LatLng(
-          _.min(this.latitudes()),
-          _.min(this.longitudes())
-        );
-      } else {
-        return new google.maps.LatLng(
-          this.points[0].lat() - PADDING,
-          this.points[0].lng() - PADDING
-        );
-      }
-    },
-
-    northeastCorner: function() {
-      if (this.points.length > 1) {
-        return new google.maps.LatLng(
-          _.max(this.latitudes()),
-          _.max(this.longitudes())
-        );
-      } else {
-        return new google.maps.LatLng(
+    boundaries: function() {
+      var sw, ne;
+      if (this.points.length === 1) {
+        ne = new google.maps.LatLng(
           this.points[0].lat() + PADDING,
           this.points[0].lng() + PADDING
         );
+        sw = new google.maps.LatLng(
+          this.points[0].lat() - PADDING,
+          this.points[0].lng() - PADDING
+        );
+      } else {
+        sw = new google.maps.LatLng(
+          _.min(this.latitudes()),
+          _.min(this.longitudes())
+        );
+        ne = new google.maps.LatLng(
+          _.max(this.latitudes()),
+          _.max(this.longitudes())
+        );
       }
+
+      return new google.maps.LatLngBounds(sw, ne);
     },
 
     latitudes: function() {

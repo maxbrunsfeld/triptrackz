@@ -11,11 +11,7 @@ views.Map = Backbone.View.extend({
   },
 
   centerMap: function() {
-    var bounds = new google.maps.LatLngBounds(
-      this.model.southwestCorner(),
-      this.model.northeastCorner()
-    );
-    this.map.fitBounds(bounds);
+    this.map.fitBounds(this.model.boundaries());
   }
 
 });
