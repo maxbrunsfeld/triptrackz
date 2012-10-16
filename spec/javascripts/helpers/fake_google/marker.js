@@ -3,7 +3,7 @@ google.maps.Marker = function(options) {
   google.backdoor.markerCreated(this);
 };
 
-_.extend(google.maps.Marker.prototype, Backbone.Events, {
+_.extend(google.maps.Marker.prototype, {
   getMap: function() {
     return this.options.map;
   },

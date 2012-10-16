@@ -11,6 +11,8 @@ _.extend(google.maps.Map.prototype, {
 
   getCenter: function() {
     return this.options.center;
-  }
+  },
+
+  getBounds: function() {}
 
 });

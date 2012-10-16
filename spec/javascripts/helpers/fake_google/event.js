@@ -1,3 +1,6 @@
+//= require ./map
+//= require ./marker
+
 google.maps.event = {
 
   addListener: function(object, eventName, callback) {
@@ -9,3 +12,7 @@ google.maps.event = {
   }
 
 };
+
+_.each(["Map", "Marker"], function(className) {
+  _.extend(google.maps[className].prototype, Backbone.Events);
+});

@@ -34,15 +34,46 @@ describe("views.Map", function() {
   });
 
   describe("when the model changes its boundaries", function() {
-    it("re-centers the map at the given coordinates", function() {
-      var sw = new google.maps.LatLng(38, -104);
-      var ne = new google.maps.LatLng(39, -103);
-      var bounds = new google.maps.LatLngBounds(sw, ne);
+    var bounds;
+
+    beforeEach(function() {
+      bounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(38, -104),
+        new google.maps.LatLng(39, -103)
+      );
 
       model.boundaries = bounds;
+    });
+
+    it("re-centers the map at the given coordinates", function() {
+      model.trigger("change");
+      expect(view.map.fitBounds).to.have.been.calledWith(bounds);
+    });
+
+    it("sets the map's boundaries on the model", function() {
+      var outerBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(37, -105),
+        new google.maps.LatLng(40, -102)
+      );
+
+      sinon.stub(view.map, "getBounds").returns(outerBounds);
       model.trigger("change");
 
-      expect(view.map.fitBounds).to.have.been.calledWith(bounds);
+      expect(model.boundaries).to.eql(outerBounds);
+    });
+
+    describe("when the map's boundaries change", function() {
+      it("updates the model's boundaries", function() {
+        var newBounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng(40, -104),
+          new google.maps.LatLng(41, -103)
+        );
+
+        sinon.stub(view.map, "getBounds").returns(newBounds);
+        google.maps.event.trigger(view.map, "bounds_changed");
+
+        expect(model.boundaries).to.eql(newBounds);
+      });
     });
   });
 
