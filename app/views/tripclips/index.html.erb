@@ -21,18 +21,8 @@
 </div>
 
 <script>
-  (function() {
-    var points = [ new models.Point(), new models.Point() ];
-    var region = new models.Region({ points: points });
-
-    var mapView = new views.Map({
-      el: document.getElementById("map-canvas"),
-      model: region
-    });
-
-    var addressView = new views.Address({
-      el: document.getElementById("main"),
-      models: points
-    });
-  })();
+  new pages.TripclipsIndex({
+    mapEl: $("#map-canvas"),
+    addressEl: $("#location")
+  });
 </script>

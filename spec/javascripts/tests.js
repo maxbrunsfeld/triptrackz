@@ -5,4 +5,5 @@
 //= require_tree ./support
 //= require_tree ./models
 //= require_tree ./views
+//= require_tree ./pages
 
