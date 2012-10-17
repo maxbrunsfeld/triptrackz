@@ -17,12 +17,14 @@ views.Map = Backbone.View.extend({
   },
 
   regionChanged: function() {
+    if (this.map.getBounds().equals(this.model.boundaries)) return;
     this.map.fitBounds(this.model.boundaries);
     this.mapMoved();
   },
 
   mapMoved: function() {
     this.model.boundaries = this.map.getBounds();
+    this.model.trigger("change");
   }
 
 });

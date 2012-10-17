@@ -21,6 +21,13 @@ _.extend(google.maps.LatLngBounds.prototype, {
       this.sw.lat() <= point.lat() &&
       this.sw.lng() <= point.lng()
     );
+  },
+
+  equals: function(other) {
+    return (
+      this.getNortheast().equals(other.getNortheast()) &&
+      this.getSouthwest().equals(other.getSouthwest())
+    );
   }
   
 });

@@ -11,7 +11,7 @@
     },
 
     pointChanged: function() {
-      this.adjustBoundaries()
+      this.adjustBoundaries();
     },
 
     anyPointIsOutsideBoundaries: function() {

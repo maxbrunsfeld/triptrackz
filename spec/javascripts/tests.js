@@ -6,4 +6,5 @@
 //= require_tree ./models
 //= require_tree ./views
 //= require_tree ./pages
+//= require_tree ./collections
 

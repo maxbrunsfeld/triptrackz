@@ -1,5 +1,5 @@
 describe("views.Map", function() {
-  var el, view, model, googleMap;
+  var el, view, model;
 
   beforeEach(function() {
     el = document.createElement("div");
@@ -34,46 +34,53 @@ describe("views.Map", function() {
   });
 
   describe("when the model changes its boundaries", function() {
-    var bounds;
+    var bounds, viewBounds;
 
     beforeEach(function() {
+      viewBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(37, -105),
+        new google.maps.LatLng(40, -102)
+      );
+      sinon.stub(view.map, "getBounds", function() {
+        return viewBounds;
+      });
+
       bounds = new google.maps.LatLngBounds(
         new google.maps.LatLng(38, -104),
         new google.maps.LatLng(39, -103)
       );
-
       model.boundaries = bounds;
+      model.trigger("change");
     });
 
     it("re-centers the map at the given coordinates", function() {
-      model.trigger("change");
       expect(view.map.fitBounds).to.have.been.calledWith(bounds);
     });
 
     it("sets the map's boundaries on the model", function() {
-      var outerBounds = new google.maps.LatLngBounds(
-        new google.maps.LatLng(37, -105),
-        new google.maps.LatLng(40, -102)
-      );
-
-      sinon.stub(view.map, "getBounds").returns(outerBounds);
-      model.trigger("change");
-
-      expect(model.boundaries).to.eql(outerBounds);
+      expect(model.boundaries).to.eql(viewBounds);
     });
 
     describe("when the map's boundaries change", function() {
-      it("updates the model's boundaries", function() {
-        var newBounds = new google.maps.LatLngBounds(
+      var changeSpy;
+
+      beforeEach(function() {
+        changeSpy = sinon.spy();
+        model.on("change", changeSpy);
+        viewBounds = new google.maps.LatLngBounds(
           new google.maps.LatLng(40, -104),
           new google.maps.LatLng(41, -103)
         );
-
-        sinon.stub(view.map, "getBounds").returns(newBounds);
         google.maps.event.trigger(view.map, "bounds_changed");
-
-        expect(model.boundaries).to.eql(newBounds);
       });
+
+      it("updates the model's boundaries", function() {
+        expect(model.boundaries).to.eql(viewBounds);
+      });
+
+      it("triggers change event of the model", function(){
+        expect(changeSpy).to.have.been.called;
+      })
     });
   });
 

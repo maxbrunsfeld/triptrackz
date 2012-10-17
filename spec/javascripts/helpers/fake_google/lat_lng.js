@@ -11,6 +11,13 @@ _.extend(google.maps.LatLng.prototype, {
 
   lng: function() {
     return this._lng;
+  },
+
+  equals: function(other) {
+    return (
+      this.lat() === other.lat() &&
+      this.lng() === other.lng()
+    );
   }
 
 });
