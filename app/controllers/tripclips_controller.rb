@@ -11,7 +11,16 @@ class TripclipsController < ApplicationController
   end
 
   def index
-    @tripclips = Tripclip.all
+    if params[:north]
+      @tripclips = Tripclip.within_box(
+        params[:north],
+        params[:south],
+        params[:east],
+        params[:west]
+      )
+    else
+      @tripclips = Tripclip.all
+    end
 
     respond_to do |format|
       format.html

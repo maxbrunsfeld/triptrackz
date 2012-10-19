@@ -36,7 +36,7 @@ describe Tripclip do
     end
   end
 
-  describe ".within_box(southwest, northeast)" do
+  describe ".within_box(north, south, east, west)" do
     let(:points) do
       {
         :inside => Point.from_x_y(0, 0),
@@ -49,17 +49,10 @@ describe Tripclip do
 
     it "returns the tripclips inside the given box" do
       points.each do |name, point|
-        Tripclip.create(
-          :name => "tripclip_#{name}",
-          :user_id => 1,
-          :location => point
-        )
+        create(:tripclip, :location => point)
       end
 
-      sw_corner = Point.from_x_y(-1, -1)
-      ne_corner = Point.from_x_y(1, 1)
-
-      tripclips = Tripclip.within_box(sw_corner, ne_corner)
+      tripclips = Tripclip.within_box(1, -1, 1, -1)
 
       inside_points = tripclips.map(&:location)
 

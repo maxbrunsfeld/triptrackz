@@ -4,9 +4,9 @@ class Tripclip < ActiveRecord::Base
 
   class << self
 
-    def within_box(sw, ne)
-      sw_string = "(#{sw.x}, #{sw.y})"
-      ne_string = "(#{ne.x}, #{ne.y})"
+    def within_box(north, south, east, west)
+      sw_string = "(#{west}, #{south})"
+      ne_string = "(#{east}, #{north})"
       box_string = "box '(#{sw_string}, #{ne_string})'"
       where("location <@ #{box_string}")
     end

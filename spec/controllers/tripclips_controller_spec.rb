@@ -3,18 +3,8 @@ require "spec_helper"
 describe TripclipsController do
   describe "#index" do
     before do
-      @tripclip1 = Tripclip.create!(
-        :name => "cheeto tour",
-        :user_id => 1,
-        :latitude => 34,
-        :longitude => -122
-      )
-      @tripclip2 = Tripclip.create!(
-        :name => "dorito tour",
-        :user_id => 1,
-        :latitude => 34.2,
-        :longitude => -122.2
-      )
+      @tripclip1 = create(:tripclip)
+      @tripclip2 = create(:tripclip)
     end
 
     context "when html is requested" do
@@ -26,18 +16,50 @@ describe TripclipsController do
     end
 
     context "when json is requested" do
-      it "returns a list of tripclips as json" do
-        get :index, {:format => :json}
-        json = JSON.parse(response.body)
+      context "when the north south east and west parameters are sent" do
+        it "returns the tripclips inside of those boundaries as json" do
+          north = 2
+          south = -5
+          west = -5
+          east = 3
 
-        names = json.map {|hash| hash["name"]}
-        latitudes = json.map {|hash| hash["latitude"]}
-        longitudes = json.map {|hash| hash["longitude"]}
+          tripclip = create(:tripclip)
 
-        names.should include(@tripclip1.name, @tripclip2.name)
-        latitudes.should include(@tripclip1.latitude, @tripclip2.latitude)
-        longitudes.should include(@tripclip1.longitude, @tripclip2.longitude)
+          Tripclip.stub(:within_box).
+            with(north, south, east, west).
+            and_return([tripclip])
+
+          get :index, {
+            :format => :json,
+            :north => north,
+            :south => south,
+            :west => west,
+            :east => east
+          }
+          json = JSON.parse(response.body)
+          json.should == [{
+            "name" => tripclip.name,
+            "latitude" => tripclip.latitude,
+            "longitude" => tripclip.longitude
+          }]
+        end
       end
+
+      context "when the boundary parameters are not provided" do
+        it "returns a list of tripclips as json" do
+          get :index, {:format => :json}
+          json = JSON.parse(response.body)
+
+          names = json.map { |hash| hash["name"] }
+          latitudes = json.map { |hash| hash["latitude"] }
+          longitudes = json.map { |hash| hash["longitude"] }
+
+          names.should include(@tripclip1.name, @tripclip2.name)
+          latitudes.should include(@tripclip1.latitude, @tripclip2.latitude)
+          longitudes.should include(@tripclip1.longitude, @tripclip2.longitude)
+        end
+      end
+
     end
   end
 
