@@ -62,7 +62,7 @@ describe("views.Map", function() {
     });
 
     describe("when the map's boundaries change", function() {
-      var changeSpy;
+      var changeSpy, clock;
 
       beforeEach(function() {
         changeSpy = sinon.spy();
@@ -71,16 +71,35 @@ describe("views.Map", function() {
           new google.maps.LatLng(40, -104),
           new google.maps.LatLng(41, -103)
         );
+
+        clock = sinon.useFakeTimers();
+      });
+
+      it("updates the model's boundaries when the boundaries stop changing", function() {
         google.maps.event.trigger(view.map, "bounds_changed");
+        expectModelNotToHaveChangedYet();
+
+        clock.tick(50);
+        google.maps.event.trigger(view.map, "bounds_changed");
+        expectModelNotToHaveChangedYet();
+
+        clock.tick(50);
+        google.maps.event.trigger(view.map, "bounds_changed");
+        expectModelNotToHaveChangedYet();
+
+        clock.tick(500);
+        expectModelToHaveChanged();
       });
 
-      it("updates the model's boundaries", function() {
+      function expectModelNotToHaveChangedYet() {
+        expect(model.boundaries).not.to.eql(viewBounds);
+        expect(changeSpy).not.to.have.been.called;
+      }
+
+      function expectModelToHaveChanged() {
         expect(model.boundaries).to.eql(viewBounds);
-      });
-
-      it("triggers change event of the model", function(){
         expect(changeSpy).to.have.been.called;
-      })
+      }
     });
   });
 
