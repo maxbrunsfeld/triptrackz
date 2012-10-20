@@ -14,6 +14,7 @@ _.extend(google.maps.LatLng.prototype, {
   },
 
   equals: function(other) {
+    if (!(other instanceof google.maps.LatLng)) return false;
     return (
       this.lat() === other.lat() &&
       this.lng() === other.lng()

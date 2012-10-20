@@ -13,6 +13,11 @@ _.extend(google.maps.Map.prototype, {
     return this.options.center;
   },
 
-  getBounds: function() {}
+  getBounds: function() {
+    return new google.maps.LatLngBounds(
+      new google.maps.LatLng(1, 2),
+      new google.maps.LatLng(3, 4)
+    );
+  }
 
 });

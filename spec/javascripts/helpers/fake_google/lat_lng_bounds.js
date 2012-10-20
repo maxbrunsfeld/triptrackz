@@ -5,11 +5,11 @@ google.maps.LatLngBounds = function(sw, ne) {
 
 _.extend(google.maps.LatLngBounds.prototype, {
 
-  getNortheast: function() {
+  getNorthEast: function() {
     return this.ne;
   },
 
-  getSouthwest: function() {
+  getSouthWest: function() {
     return this.sw;
   },
 
@@ -24,9 +24,10 @@ _.extend(google.maps.LatLngBounds.prototype, {
   },
 
   equals: function(other) {
+    if (!(other instanceof google.maps.LatLngBounds)) return false;
     return (
-      this.getNortheast().equals(other.getNortheast()) &&
-      this.getSouthwest().equals(other.getSouthwest())
+      this.getNorthEast().equals(other.getNorthEast()) &&
+      this.getSouthWest().equals(other.getSouthWest())
     );
   }
   

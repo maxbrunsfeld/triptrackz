@@ -21,6 +21,26 @@ describe("pages.TripclipsIndex", function() {
     expect(page.region.points).to.eql(page.points);
   });
 
+  it("builds a tripclips collection with the region", function() {
+    expect(page.tripclips).to.be.an.instanceOf(collections.Tripclips);
+    expect(page.tripclips.region).to.equal(page.region);
+  });
+
+  describe("when the region changes", function() {
+    it("refetches the tripclips collection", function() {
+      var fakeServer = sinon.fakeServer.create();
+
+      page.region.boundaries = new google.maps.LatLngBounds(
+        new google.maps.LatLng(1, 2),
+        new google.maps.LatLng(3, 4)
+      );
+      page.region.trigger("change");
+
+      expect(fakeServer.requests.length).to.equal(1);
+      expect(fakeServer.requests[0].url).to.equal(page.tripclips.url());
+    });
+  });
+
   it("builds a map view with the region", function() {
     expect(page.map).to.be.an.instanceOf(views.Map);
     expect(page.map.model).to.equal(page.region);
