@@ -7,6 +7,7 @@ gem 'omniauth-facebook'
 gem 'jquery-rails'
 gem 'pg'
 gem 'spatial_adapter', :git => "git://github.com/Empact/spatial_adapter.git", :require => "spatial_adapter/postgresql"
+gem 'smt_rails', :git => 'git://github.com/railsware/smt_rails.git'
 
 group :test, :development do
   gem 'fixture_builder'

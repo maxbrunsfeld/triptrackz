@@ -1,6 +1,6 @@
 (function() {
 
-  var WAIT_TIME = 500;
+  var WAIT_TIME = 250;
 
   views.Map = Backbone.View.extend({
 

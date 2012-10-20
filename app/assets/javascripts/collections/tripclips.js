@@ -2,6 +2,7 @@ collections.Tripclips = Backbone.Collection.extend({
   model: models.Tripclip,
 
   initialize: function(options) {
+    options || (options = {});
     this.region = options.region;
   },
 

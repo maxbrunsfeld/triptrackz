@@ -11,18 +11,15 @@
 
 <div class="right-section">
   <h2>Most Popular Tripclips</h2>
-  <ol>
-    <% @tripclips.each do |tripclip| %>
-      <li class="tripclip">
-        <%= tripclip.name %>
-      </li>
-    <% end %>
-  </ol>
+  <ul id="tripclips">
+    <%= render "tripclips/list", :mustache => { :tripclips => @tripclips.map {|tripclip| { :name => tripclip.name } } } %>
+  </ul>
 </div>
 
 <script>
   new pages.TripclipsIndex({
     mapEl: $("#map-canvas"),
-    addressEl: $("#location")
+    addressEl: $("#location"),
+    listEl: $("#tripclips")
   });
 </script>

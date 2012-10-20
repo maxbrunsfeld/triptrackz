@@ -1,12 +1,15 @@
 describe("pages.TripclipsIndex", function() {
-  var page, mapEl, addressEl;
+  var page, mapEl, addressEl, listEl;
 
   beforeEach(function() {
     mapEl = $("<div/>");
     addressEl = $("<form/>");
+    listEl = $("<ul></ul>");
+
     page = new pages.TripclipsIndex({
       mapEl: mapEl,
-      addressEl: addressEl
+      addressEl: addressEl,
+      listEl: listEl
     });
   });
 
@@ -39,6 +42,12 @@ describe("pages.TripclipsIndex", function() {
       expect(fakeServer.requests.length).to.equal(1);
       expect(fakeServer.requests[0].url).to.equal(page.tripclips.url());
     });
+  });
+
+  it("builds a tripclips list view with the collection", function() {
+    expect(page.tripclipsList).to.be.an.instanceOf(views.TripclipsList);
+    expect(page.tripclipsList.collection).to.equal(page.tripclips);
+    expect(page.tripclipsList.el).to.equal(listEl[0]);
   });
 
   it("builds a map view with the region", function() {

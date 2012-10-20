@@ -13,4 +13,8 @@ pages.TripclipsIndex = function(options) {
     el: options.addressEl,
     models: this.points
   });
+  this.tripclipsList = new views.TripclipsList({
+    collection: this.tripclips,
+    el: options.listEl
+  });
 };
