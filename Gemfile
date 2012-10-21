@@ -17,9 +17,10 @@ group :test, :development do
 end
 
 group :test do
- gem 'capybara'
- gem "capybara-webkit"
- gem "launchy"
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'launchy'
+  gem 'faker'
 end
 
 group :assets do

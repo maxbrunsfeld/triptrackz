@@ -2,14 +2,14 @@ FactoryGirl.define do
 
   factory :tripclip do
     user
-    name 'Amazing Sight'
-    sequence(:latitude) { |i| 34 + (0.1 * i) }
-    sequence(:longitude) { |i| -122 + (0.1 * i) }
+    name { Faker::Lorem.sentence(1) }
+    latitude { Faker::Address.latitude }
+    longitude { Faker::Address.longitude }
   end
 
   factory :user do
-    sequence(:name) { |i| "John#{i}" }
-    sequence(:email) { "john#{i}@example.com" }
+    name { Faker::Name.name }
+    email { Faker::Internet.email }
   end
 
 end
