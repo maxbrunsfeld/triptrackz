@@ -29,8 +29,7 @@ describe("views.Marker", function() {
   describe("when the model changes", function() {
     it("updates the position of the marker", function() {
       var location = new google.maps.LatLng(34, 102);
-      model.setLocation(location);
-      model.trigger("change");
+      model.set({ location: location });
 
       expect(view.marker.getPosition()).to.eql(location)
     });
@@ -40,10 +39,11 @@ describe("views.Marker", function() {
     it("updates the model with the marker's new position", function() {
       var location = new google.maps.LatLng(50, -150);
       var fakeDragEvent = { latLng: location };
+      sinon.spy(model, "setLocation");
 
       google.maps.event.trigger(view.marker, "dragend", fakeDragEvent);
 
-      expect(model.location).to.equal(location);
+      expect(model.setLocation).to.have.been.calledWith(location);
     });
   });
 });

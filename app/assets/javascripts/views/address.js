@@ -10,7 +10,7 @@ views.Address = Backbone.View.extend({
 
     _.each(this.models, function(model, i) {
       model.on("change", function() {
-        inputs.eq(i).val(model.address);
+        inputs.eq(i).val(model.address());
       });
     });
   },

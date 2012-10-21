@@ -67,8 +67,7 @@ describe("views.Address", function() {
 
       beforeEach(function() {
         address = "San Francisco, CA";
-        point1.setAddress([ address ]);
-        point1.trigger("change");
+        point1.set({ address: address });
       });
 
       it("displays the new address in the input field", function() {

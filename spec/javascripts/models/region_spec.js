@@ -7,10 +7,8 @@ describe("models.Region", function() {
 
     model = new models.Region({ points: [point1, point2] });
 
-    point1.location = new google.maps.LatLng(0, 2);
-    point2.location = new google.maps.LatLng(2, 0);
-    point1.trigger("change");
-    point2.trigger("change");
+    point1.set({ location: new google.maps.LatLng(0, 2) });
+    point2.set({ location: new google.maps.LatLng(2, 0) });
   });
 
   describe("when the points' locations are set", function() {
@@ -48,8 +46,7 @@ describe("models.Region", function() {
 
     context.skip("when the location is inside the current boundaries", function() {
       beforeEach(function() {
-        point1.location = new google.maps.LatLng(0, 1);
-        point1.trigger("change");
+        point1.set({ location: new google.maps.LatLng(0, 1) });
       });
 
       it("does not change its boundaries", function() {
@@ -66,8 +63,7 @@ describe("models.Region", function() {
 
     context("when the location is outside the current boundaries", function() {
       beforeEach(function() {
-        point1.location = new google.maps.LatLng(0, 3);
-        point1.trigger("change");
+        point1.set({ location: new google.maps.LatLng(0, 3) });
       });
 
       it("adjusts its boundaries again to fit all of the points", function() {

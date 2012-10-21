@@ -2,6 +2,7 @@ views.Marker = Backbone.View.extend({
 
   initialize: function(options) {
     this.model = options.model;
+    this.mapView = options.mapView;
 
     this.marker = new google.maps.Marker({
       map: options.mapView.map,
@@ -18,7 +19,7 @@ views.Marker = Backbone.View.extend({
   },
 
   moveMarker: function() {
-    this.marker.setPosition(this.model.location);
+    this.marker.setPosition(this.model.location());
   },
 
   markerMoved: function(e) {

@@ -11,13 +11,21 @@
     },
 
     pointChanged: function() {
-      this.adjustBoundaries();
+      if (!this.pointsArePending()) {
+        this.adjustBoundaries();
+      }
+    },
+
+    pointsArePending: function() {
+      return _.any(this.points, function(point) {
+        return point.isPending();
+      });
     },
 
     anyPointIsOutsideBoundaries: function() {
       if (!this.boundaries) return true;
       return _.any(this.points, function(point) {
-        return !this.boundaries.contains(point.location);
+        return !this.boundaries.contains(point.location());
       }, this);
     },
 
@@ -54,13 +62,13 @@
 
     latitudes: function() {
       return _.map(this.points, function(point) {
-        return point.location.lat();
+        return point.location().lat();
       });
     },
 
     longitudes: function() {
       return _.map(this.points, function(point) {
-        return point.location.lng();
+        return point.location().lng();
       });
     }
   });
