@@ -1,27 +1,24 @@
-<div id="left">
-
-  <form id="address">
+<div class="column">
+  <h2>New Tripclip</h2>
+  <form id="address-form">
     <input name="location" type="text" placeholder="Location"/>
     <button name="go">Go</button>
   </form>
 
-  <form id="tripclip">
+  <form id="tripclip-form">
     <input name="name" type="text" placeholder="Name"/>
     <button name="submit">Create Tripclip</button>
   </form>
-
 </div>
 
-<div id="right">
+<div class="last column">
   <div id="map"></div>
 </div>
 
 <script>
-
   new pages.TripclipsNew({
     mapEl: $("#map"),
-    addressEl: $("#address"),
-    tripclipFormEl: $("#tripclip")
+    addressEl: $("#address-form"),
+    tripclipFormEl: $("#tripclip-form")
   });
-
 </script>

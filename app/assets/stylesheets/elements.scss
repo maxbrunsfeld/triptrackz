@@ -1,11 +1,12 @@
 @import "definitions";
-@import "compass/css3/images";
-@import "compass/css3/border-radius";
-@import "compass/css3/box-shadow";
+
+body {
+  font-family: Helvetica Neue, Helvetica;
+}
 
 input[type='text'], button {
   font-size: $base-font-size;
-  padding: ($base-line-height / 2) 8px;
+  padding: ($base-line-height / 2);
   @include border-radius(10px);
 
   &:focus {
@@ -26,4 +27,8 @@ button {
 h2 {
   margin-bottom: $base-line-height;
   font-size: 24px;
+}
+
+form {
+  margin-bottom: $base-line-height;
 }

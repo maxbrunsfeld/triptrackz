@@ -1,4 +1,5 @@
-<div id="left">
+<div class="column">
+  <h2>Where are you going?</h2>
   <form id="address-form">
     <input name="start" type="text" placeholder="Starting Place"/>
     <input name="end" type="text" placeholder="Destination"/>
@@ -6,14 +7,12 @@
   </form>
 
   <h2>Most Popular Tripclips</h2>
-
   <ul id="tripclips-list">
     <%= render "tripclips/list", :mustache => { :tripclips => @json } %>
   </ul>
 </div>
 
-<div id="right">
-
+<div class="last column">
   <div id="map"></div>
 </div>
 

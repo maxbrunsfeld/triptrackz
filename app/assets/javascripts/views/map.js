@@ -8,7 +8,8 @@
       this.map = new google.maps.Map(this.el, {
         center: new google.maps.LatLng(39, -104),
         zoom: 4,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: false
       });
 
       this.model.on("change", this.regionChanged, this);

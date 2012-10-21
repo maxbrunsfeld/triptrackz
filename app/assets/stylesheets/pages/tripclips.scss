@@ -1,0 +1,13 @@
+@import "definitions";
+
+body.tripclips {
+
+  input[type='text'] {
+    margin-right: $base-line-height;
+  }
+
+  #map {
+    height: 20 * $base-line-height;
+  }
+  
+}
