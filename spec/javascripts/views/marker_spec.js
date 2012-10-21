@@ -22,7 +22,26 @@ describe("views.Marker", function() {
     });
 
     it("makes the marker draggable", function() {
-      expect(view.marker.getDraggable()).to.eql(true);
+      expect(view.marker.getDraggable()).to.be.true;
+    });
+
+    context("when the 'readOnly' option is set to true", function() {
+      it("does not make the marker draggable", function() {
+        view = new views.Marker({
+          mapView: mapView,
+          model: model,
+          readOnly: true
+        });
+
+        expect(view.marker.getDraggable()).to.be.false;
+      });
+    });
+  });
+
+  describe("#remove", function() {
+    it("removes the marker from the map", function() {
+      view.remove();
+      expect(view.marker.getMap()).to.be.null;
     });
   });
 

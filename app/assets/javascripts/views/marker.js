@@ -3,10 +3,11 @@ views.Marker = Backbone.View.extend({
   initialize: function(options) {
     this.model = options.model;
     this.mapView = options.mapView;
+    this.readOnly = options.readOnly;
 
     this.marker = new google.maps.Marker({
       map: options.mapView.map,
-      draggable: true
+      draggable: !this.readOnly
     });
 
     google.maps.event.addListener(
@@ -16,6 +17,11 @@ views.Marker = Backbone.View.extend({
     );
 
     this.model.on("change", this.moveMarker, this);
+    this.moveMarker();
+  },
+
+  remove: function() {
+    this.marker.setMap(null);
   },
 
   moveMarker: function() {

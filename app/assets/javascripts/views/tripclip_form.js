@@ -1,6 +1,6 @@
 views.TripclipForm = Backbone.View.extend({
   events: {
-    "click button[name='submit']": "formSubmitted"
+    "click button": "formSubmitted"
   },
 
   formSubmitted: function(e) {

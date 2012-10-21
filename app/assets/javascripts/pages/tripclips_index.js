@@ -17,4 +17,8 @@ pages.TripclipsIndex = function(options) {
     collection: this.tripclips,
     el: options.listEl
   });
+  this.markerSet = new views.MarkerSet({
+    collection: this.tripclips,
+    mapView: this.map
+  });
 };

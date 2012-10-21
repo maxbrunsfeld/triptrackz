@@ -8,6 +8,10 @@ _.extend(google.maps.Marker.prototype, {
     return this.options.map;
   },
 
+  setMap: function(map) {
+    this.options.map = map;
+  },
+
   setPosition: function(position) {
     this.options.position = position;
   },

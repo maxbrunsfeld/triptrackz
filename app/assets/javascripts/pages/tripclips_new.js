@@ -1,7 +1,7 @@
 pages.TripclipsNew = function(options) {
-  this.point = new models.Point();
+  this.tripclip = new models.Tripclip()
+  this.point = this.tripclip.point;
   this.region = new models.Region({ points: [this.point] });
-  this.tripclip = new models.Tripclip({ point: this.point })
 
   this.map = new views.Map({
     el: options.mapEl,

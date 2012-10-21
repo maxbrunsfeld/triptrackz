@@ -12,18 +12,14 @@ describe("pages.TripclipsNew", function() {
     });
   });
 
-  it("builds a point model", function() {
-    expect(page.point).to.be.an.instanceOf(models.Point);
+  it("builds a tripclip model", function() {
+    expect(page.tripclip).to.be.an.instanceOf(models.Tripclip);
+    expect(page.point).to.equal(page.tripclip.point);
   });
 
-  it("builds a region model with the point", function() {
+  it("builds a region model with the tripclip's point", function() {
     expect(page.region).to.be.an.instanceOf(models.Region);
     expect(page.region.points).to.eql([page.point]);
-  });
-
-  it("builds a tripclip model with the point", function() {
-    expect(page.tripclip).to.be.an.instanceOf(models.Tripclip);
-    expect(page.tripclip.point).to.equal(page.point);
   });
 
   it("builds a map view with the region", function() {
@@ -32,13 +28,13 @@ describe("pages.TripclipsNew", function() {
     expect(page.map.el).to.equal(mapEl[0]);
   });
 
-  it("builds a marker view with the point", function() {
+  it("builds a marker view with the tripclip's point", function() {
     expect(page.marker).to.be.an.instanceOf(views.Marker);
     expect(page.marker.model).to.equal(page.point);
     expect(page.marker.mapView).to.equal(page.map);
   });
 
-  it("builds an address view with the point", function() {
+  it("builds an address view with the tripclip's point", function() {
     expect(page.address).to.be.an.instanceOf(views.Address);
     expect(page.address.models).to.eql([page.point]);
     expect(page.address.el).to.equal(addressEl[0]);

@@ -4,7 +4,7 @@
 
   models.Region = Backbone.Model.extend({
     initialize: function(options) {
-      this.points = options.points;
+      this.points = options && options.points;
       _.each(this.points, function(point) {
         point.on("change", this.pointChanged, this);
       }, this);

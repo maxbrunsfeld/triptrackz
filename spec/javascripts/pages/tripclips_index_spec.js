@@ -62,4 +62,10 @@ describe("pages.TripclipsIndex", function() {
     expect(page.address.el).to.equal(addressEl[0]);
   });
 
+  it("builds a marker set view with the collection", function() {
+    expect(page.markerSet).to.be.an.instanceOf(views.MarkerSet);
+    expect(page.markerSet.collection).to.equal(page.tripclips);
+    expect(page.markerSet.mapView).to.equal(page.map);
+  });
+
 });
