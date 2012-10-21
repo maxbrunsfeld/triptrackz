@@ -10,4 +10,12 @@ class ApplicationController < ActionController::Base
     user_id = user ? user.id : nil
     session[:user_id] = user_id
   end
+
+  def render_html_or_json(json)
+    @json = json
+    respond_to do |format|
+      format.html { render }
+      format.json { render :json => @json }
+    end
+  end
 end

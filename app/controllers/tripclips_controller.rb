@@ -12,32 +12,25 @@ class TripclipsController < ApplicationController
 
   def index
     if params[:north]
-      @tripclips = Tripclip.within_box(
+      tripclips = Tripclip.within_box(
         params[:north],
         params[:south],
         params[:east],
         params[:west]
       )
     else
-      @tripclips = Tripclip.all
+      tripclips = Tripclip.all
     end
 
-    respond_to do |format|
-      format.html
-
-      format.json do
-        json = @tripclips.map do |tripclip|
-          {
-            :name => tripclip.name,
-            :latitude => tripclip.latitude,
-            :longitude => tripclip.longitude
-          }
-        end
-
-        render :json => json
-      end
+    json = tripclips.map do |tripclip|
+      {
+        :name => tripclip.name,
+        :latitude => tripclip.latitude,
+        :longitude => tripclip.longitude
+      }
     end
 
+    render_html_or_json(json)
   end
 
 end

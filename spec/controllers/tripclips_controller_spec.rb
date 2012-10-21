@@ -8,10 +8,11 @@ describe TripclipsController do
     end
 
     context "when html is requested" do
-      it "sets up a list of tripclips to be rendered" do
+      it "renders the page with all tripclips" do
         get :index
-        assigns[:tripclips].should == Tripclip.all
         response.should render_template("tripclips/index")
+        names = assigns(:json).map { |hash| hash[:name] }
+        names.should include(@tripclip1.name, @tripclip2.name)
       end
     end
 
@@ -59,7 +60,6 @@ describe TripclipsController do
           longitudes.should include(@tripclip1.longitude, @tripclip2.longitude)
         end
       end
-
     end
   end
 

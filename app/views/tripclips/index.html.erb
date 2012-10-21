@@ -8,7 +8,7 @@
   <h2>Most Popular Tripclips</h2>
 
   <ul id="tripclips-list">
-    <%= render "tripclips/list", :mustache => { :tripclips => @tripclips.map {|tripclip| { :name => tripclip.name } } } %>
+    <%= render "tripclips/list", :mustache => { :tripclips => @json } %>
   </ul>
 </div>
 
