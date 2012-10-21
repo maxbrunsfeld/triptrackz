@@ -8,7 +8,7 @@ models.Tripclip = Backbone.Model.extend({
   },
 
   set: function(attrs) {
-    if (attrs.latitude) {
+    if (attrs && attrs.latitude) {
       this.point.set({
         address: attrs.address,
         location: new google.maps.LatLng(

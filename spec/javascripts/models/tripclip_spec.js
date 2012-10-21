@@ -97,7 +97,6 @@ describe("models.Tripclip", function() {
       expect(data.name).to.equal("late night sushi");
       expect(data.latitude).to.equal(1);
       expect(data.longitude).to.equal(2);
-
     });
 
     it("passes the csrf token", function() {
