@@ -7,7 +7,6 @@ describe "logging in", :type => :request do
 
   it "directs the user to the tripclips page" do
     current_path.should == "/tripclips"
-    page.should have_content("Where are you going?")
     page.should have_content("Louie")
   end
 
