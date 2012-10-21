@@ -1,4 +1,5 @@
 class TripclipsController < ApplicationController
+  wrap_parameters :format => [:json, :multipart_form]
 
   def new
     @tripclip = Tripclip.new

@@ -59,4 +59,50 @@ describe("models.Tripclip", function() {
       expect(json.address).to.equal(address);
     });
   });
+
+  describe("#save", function() {
+    var fileInput, ajaxOptions;
+
+    beforeEach(function() {
+      sinon.spy($, "ajax");
+
+      fileInput = $("<input type='file'/>");
+      var form = $("<form></form>").append(fileInput);
+      model.setFileInput(fileInput);
+
+      model.save({
+        name: "late night sushi",
+        latitude: 1,
+        longitude: 2
+      });
+
+      ajaxOptions = $.ajax.args[0][0];
+    });
+
+    afterEach(function() {
+      $.ajax.restore();
+    });
+
+    it("uses the jquery iframe transport", function() {
+      expect($.ajax).to.have.been.calledOnce;
+      expect(ajaxOptions.iframe).to.be.true;
+    });
+
+    it("includes the model's file inputs", function() {
+      expect(ajaxOptions.files).to.be.equal(fileInput);
+    });
+
+    it("passes the model's other data", function() {
+      var data = ajaxOptions.data;
+      expect(data.name).to.equal("late night sushi");
+      expect(data.latitude).to.equal(1);
+      expect(data.longitude).to.equal(2);
+
+    });
+
+    it("passes the csrf token", function() {
+      var data = ajaxOptions.data;
+      expect(data[csrf_param]).to.equal(csrf_token);
+    });
+  });
 });

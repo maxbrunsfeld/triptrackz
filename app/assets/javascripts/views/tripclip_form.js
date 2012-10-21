@@ -6,6 +6,7 @@ views.TripclipForm = Backbone.View.extend({
   formSubmitted: function(e) {
     e.preventDefault();
 
+    this.model.setFileInput(this.$("input[name='clip']"));
     this.model.save({
       name: this.$("input[name='name']").val()
     });

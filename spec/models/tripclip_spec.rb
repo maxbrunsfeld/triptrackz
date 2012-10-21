@@ -4,16 +4,10 @@ describe Tripclip do
 
   describe "#latitude / #longitude" do
     let(:tripclip) do
-      Tripclip.new(
-        :name => "fun_tripclip",
-        :user_id => 1
-      )
+      build(:tripclip, :name => "fun_tripclip")
     end
 
     it "reads and writes the x/y coordinate of the location" do
-      tripclip.latitude.should be_nil
-      tripclip.longitude.should be_nil
-
       tripclip.latitude = 34.0
       tripclip.longitude = -122.5
 

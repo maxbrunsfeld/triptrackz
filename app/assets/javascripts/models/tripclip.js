@@ -32,6 +32,23 @@ models.Tripclip = Backbone.Model.extend({
       longitude: this.point.location().lng(),
       address: this.point.address()
     };
+  },
+
+  setFileInput: function(fileInputs) {
+    this.fileInput = fileInputs;
+  },
+
+  sync: function(method, model, options) {
+    var csrf_params = {};
+    csrf_params[window.csrf_param] = window.csrf_token;
+
+    _.extend(options, {
+      files: this.fileInput,
+      iframe: true,
+      data: _.extend(model.toJSON(), csrf_params)
+    });
+
+    return Backbone.sync.apply(this, arguments);
   }
 
 });

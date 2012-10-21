@@ -11,14 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121010045631) do
+ActiveRecord::Schema.define(:version => 20121021105438) do
 
   create_table "tripclips", :force => true do |t|
-    t.string   "name",                      :null => false
-    t.integer  "user_id",                   :null => false
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.point    "location",   :limit => nil, :null => false, :srid => 4326
+    t.string   "name",                             :null => false
+    t.integer  "user_id",                          :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.point    "location",          :limit => nil, :null => false, :srid => 4326
+    t.string   "clip_file_name"
+    t.string   "clip_content_type"
+    t.integer  "clip_file_size"
+    t.datetime "clip_updated_at"
+    t.string   "address"
   end
 
   create_table "users", :force => true do |t|
