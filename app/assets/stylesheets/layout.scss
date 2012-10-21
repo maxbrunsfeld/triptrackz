@@ -1,0 +1,67 @@
+@import "definitions";
+@import "compass/typography/vertical_rhythm";
+@import "blueprint";
+
+$padding: $base-line-height;
+
+@include establish-baseline;
+
+body {
+  font-family: Helvetica;
+}
+
+#header {
+  $height: 3 * $base-line-height;
+
+  line-height: $height;
+  height: $height;
+  @include background(linear-gradient(top, $header-top, $header-bottom));
+}
+
+#inner-header {
+  @include container;
+}
+
+#title {
+  font-size: 24px;
+  margin: 0;
+  display: inline;
+}
+
+.right {
+  float: right;
+}
+
+#logout {
+  margin-left: 10px;
+}
+
+#main {
+  padding: $base-line-height;
+  @include container;
+}
+
+form {
+  @include container;
+  margin-bottom: $base-line-height;
+
+  input[type='text'] {
+    @include column(4);
+  }
+
+  button {
+    @include column(3, true);
+  }
+}
+
+#left {
+  @include column(12);
+}
+
+#right {
+  @include column(12, true);
+}
+
+#map {
+  height: 20 * $base-line-height;
+}

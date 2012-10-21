@@ -1,0 +1,29 @@
+@import "definitions";
+@import "compass/css3/images";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+
+input[type='text'], button {
+  font-size: $base-font-size;
+  padding: ($base-line-height / 2) 8px;
+  @include border-radius(10px);
+
+  &:focus {
+    outline: none;
+    @include box-shadow(0 0 8px #aaa);
+  }
+}
+
+input[type='text'] {
+  border: 1px solid #aaa;
+}
+
+button {
+  border-width: 1px;
+  @include background(linear-gradient(top, $button-top, $button-bottom));
+}
+
+h2 {
+  margin-bottom: $base-line-height;
+  font-size: 24px;
+}

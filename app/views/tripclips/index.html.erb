@@ -1,25 +1,26 @@
-<h1>Where are you going?</h1>
-<form id="location">
-  <input name="start" type="text" placeholder="Starting Place"/>
-  <input name="end" type="text" placeholder="Destination"/>
-  <button name="go">Go</button>
-</form>
+<div id="left">
+  <form id="address-form">
+    <input name="start" type="text" placeholder="Starting Place"/>
+    <input name="end" type="text" placeholder="Destination"/>
+    <button name="go">Go</button>
+  </form>
 
-<div class="left-section">
-  <div id="map-canvas"></div>
-</div>
-
-<div class="right-section">
   <h2>Most Popular Tripclips</h2>
-  <ul id="tripclips">
+
+  <ul id="tripclips-list">
     <%= render "tripclips/list", :mustache => { :tripclips => @tripclips.map {|tripclip| { :name => tripclip.name } } } %>
   </ul>
 </div>
 
+<div id="right">
+
+  <div id="map"></div>
+</div>
+
 <script>
   new pages.TripclipsIndex({
-    mapEl: $("#map-canvas"),
-    addressEl: $("#location"),
-    listEl: $("#tripclips")
+    mapEl: $("#map"),
+    addressEl: $("#address-form"),
+    listEl: $("#tripclips-list")
   });
 </script>

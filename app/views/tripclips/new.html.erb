@@ -1,6 +1,6 @@
-<div class="left-section">
+<div id="left">
 
-  <form id="location">
+  <form id="address">
     <input name="location" type="text" placeholder="Location"/>
     <button name="go">Go</button>
   </form>
@@ -12,17 +12,15 @@
 
 </div>
 
-<div class="right-section">
-
-  <div id="map-canvas"></div>
-
+<div id="right">
+  <div id="map"></div>
 </div>
 
 <script>
 
   new pages.TripclipsNew({
-    mapEl: $("#map-canvas"),
-    addressEl: $("#location"),
+    mapEl: $("#map"),
+    addressEl: $("#address"),
     tripclipFormEl: $("#tripclip")
   });
 
