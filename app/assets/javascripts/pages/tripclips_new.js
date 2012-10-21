@@ -7,6 +7,10 @@ pages.TripclipsNew = function(options) {
     el: options.mapEl,
     model: this.region
   });
+  this.marker = new views.Marker({
+    model: this.point,
+    mapView: this.map
+  });
   this.address = new views.Address({
     el: options.addressEl,
     models: [this.point]

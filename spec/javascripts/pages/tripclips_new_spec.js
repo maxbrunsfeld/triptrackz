@@ -32,6 +32,12 @@ describe("pages.TripclipsNew", function() {
     expect(page.map.el).to.equal(mapEl[0]);
   });
 
+  it("builds a marker view with the point", function() {
+    expect(page.marker).to.be.an.instanceOf(views.Marker);
+    expect(page.marker.model).to.equal(page.point);
+    expect(page.marker.mapView).to.equal(page.map);
+  });
+
   it("builds an address view with the point", function() {
     expect(page.address).to.be.an.instanceOf(views.Address);
     expect(page.address.models).to.eql([page.point]);
