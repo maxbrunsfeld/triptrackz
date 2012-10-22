@@ -9,6 +9,7 @@ gem 'pg'
 gem 'spatial_adapter', :git => "git://github.com/Empact/spatial_adapter.git", :require => "spatial_adapter/postgresql"
 gem 'smt_rails', :git => 'git://github.com/railsware/smt_rails.git'
 gem 'paperclip'
+gem 'execjs'
 
 group :test, :development do
   gem 'fixture_builder'
