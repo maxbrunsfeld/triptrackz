@@ -64,7 +64,7 @@ describe("models.Tripclip", function() {
     var fileInput, ajaxOptions;
 
     beforeEach(function() {
-      sinon.spy($, "ajax");
+      sinon.stub($, "ajax");
 
       fileInput = $("<input type='file'/>");
       var form = $("<form></form>").append(fileInput);

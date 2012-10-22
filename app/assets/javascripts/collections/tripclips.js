@@ -19,5 +19,10 @@ collections.Tripclips = Backbone.Collection.extend({
       "east=" + east,
       "west=" + west
     ].join("&");
+  },
+
+  selectModel: function(model) {
+    this.selectedModel = model;
+    this.trigger("select", model);
   }
 });

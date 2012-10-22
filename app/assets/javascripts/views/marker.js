@@ -18,6 +18,7 @@ views.Marker = Backbone.View.extend({
 
     this.model.on("change", this.moveMarker, this);
     this.moveMarker();
+    this.deselect();
   },
 
   remove: function() {
@@ -30,5 +31,27 @@ views.Marker = Backbone.View.extend({
 
   markerMoved: function(e) {
     this.model.setLocation(e.latLng);
+  },
+
+  select: function() {
+    var pinColor = "0f0";
+    this.marker.setIcon(
+      new google.maps.MarkerImage(
+        "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+        new google.maps.Size(21, 34),
+        new google.maps.Point(0, 0),
+        new google.maps.Point(10, 34))
+    );
+  },
+
+  deselect: function() {
+    var pinColor = "f00";
+    this.marker.setIcon(
+      new google.maps.MarkerImage(
+        "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+        new google.maps.Size(21, 34),
+        new google.maps.Point(0, 0),
+        new google.maps.Point(10, 34))
+    );
   }
 });

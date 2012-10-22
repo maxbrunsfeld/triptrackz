@@ -22,5 +22,9 @@ _.extend(google.maps.Marker.prototype, {
 
   getDraggable: function() {
     return this.options.draggable;
+  },
+
+  setIcon: function(icon) {
+    this.options.icon = icon;
   }
 });

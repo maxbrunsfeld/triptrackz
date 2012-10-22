@@ -1,5 +1,5 @@
 describe("views.Marker", function() {
-  var view, mapView, model, marker;
+  var view, mapView, model;
 
   beforeEach(function() {
     model = new models.Point();
@@ -63,6 +63,26 @@ describe("views.Marker", function() {
       google.maps.event.trigger(view.marker, "dragend", fakeDragEvent);
 
       expect(model.setLocation).to.have.been.calledWith(location);
+    });
+  });
+
+  describe("methods that change the marker's icon", function() {
+    beforeEach(function() {
+      sinon.spy(view.marker, "setIcon");
+    });
+
+    describe("#select", function() {
+      it("makes the marker look selected", function() {
+        view.select();
+        expect(view.marker.setIcon).to.have.been.called;
+      });
+    });
+
+    describe("#deselect", function() {
+      it("makes the marker *not* look selected", function() {
+        view.deselect();
+        expect(view.marker.setIcon).to.have.been.called;
+      });
     });
   });
 });

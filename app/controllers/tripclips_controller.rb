@@ -27,7 +27,8 @@ class TripclipsController < ApplicationController
       {
         :name => tripclip.name,
         :latitude => tripclip.latitude,
-        :longitude => tripclip.longitude
+        :longitude => tripclip.longitude,
+        :id => tripclip.id
       }
     end
 

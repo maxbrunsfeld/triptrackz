@@ -3,6 +3,7 @@ views.MarkerSet = Backbone.View.extend({
   initialize: function(options) {
     this.mapView = options.mapView;
     this.collection.on("reset", this.drawMarkers, this);
+    this.collection.on("select", this.modelSelected, this);
   },
   
   drawMarkers: function() {
@@ -17,6 +18,16 @@ views.MarkerSet = Backbone.View.extend({
         readOnly: true
       });
     }, this);
+  },
+
+  modelSelected: function(model) {
+    _.each(this.markers, function(marker) {
+      if (marker.model === model.point) {
+        marker.select();
+      } else {
+        marker.deselect();
+      }
+    });
   }
   
 });

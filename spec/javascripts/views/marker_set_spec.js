@@ -13,12 +13,14 @@ describe("views.MarkerSet", function() {
         {
           latitude: 1,
           longitude: 2,
-          address: "466 37th St #6"
+          address: "466 37th St #6",
+          id: 45
         },
         {
           latitude: 3,
           longitude: 4,
-          address: "466 37th St #5"
+          address: "466 37th St #5",
+          id: 56
         }
       ]);
     });
@@ -50,6 +52,20 @@ describe("views.MarkerSet", function() {
 
       _.each(oldMarkers, function(oldMarker) {
         expect(oldMarker.remove).to.have.been.called;
+      });
+    });
+
+    describe("when a model in the collection is selected", function() {
+      it("marks that model's view as selected", function() {
+        sinon.spy(view.markers[1], "select");
+        collection.selectModel(collection.at(1));
+        expect(view.markers[1].select).to.have.been.called;
+      });
+
+      it("marks the other views as deselected", function() {
+        sinon.spy(view.markers[0], "deselect");
+        collection.selectModel(collection.at(1));
+        expect(view.markers[0].deselect).to.have.been.called;
       });
     });
   });
