@@ -23,7 +23,7 @@ class TripclipsController < ApplicationController
       tripclips = Tripclip.all
     end
 
-    json = tripclips.map do |tripclip|
+    @json = tripclips.map do |tripclip|
       {
         :name => tripclip.name,
         :latitude => tripclip.latitude,
@@ -31,7 +31,10 @@ class TripclipsController < ApplicationController
       }
     end
 
-    render_html_or_json(json)
+    respond_to do |format|
+      format.html { render }
+      format.json { render :json => @json }
+    end
   end
 
 end
