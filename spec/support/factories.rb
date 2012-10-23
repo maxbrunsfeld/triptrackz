@@ -5,6 +5,7 @@ FactoryGirl.define do
     name { Faker::Lorem.sentence(1) }
     latitude { Faker::Address.latitude }
     longitude { Faker::Address.longitude }
+    address { Faker::Address.street_address }
   end
 
   factory :user do

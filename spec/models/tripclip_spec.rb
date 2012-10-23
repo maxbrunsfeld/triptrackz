@@ -58,4 +58,18 @@ describe Tripclip do
     end
   end
 
+  describe "#as_json" do
+    let(:tripclip) { create(:tripclip) }
+
+    specify do
+      tripclip.as_json.should == {
+        "name" => tripclip.name,
+        "latitude" => tripclip.latitude,
+        "longitude" => tripclip.longitude,
+        "address" => tripclip.address,
+        "id" => tripclip.id
+      }
+    end
+  end
+
 end

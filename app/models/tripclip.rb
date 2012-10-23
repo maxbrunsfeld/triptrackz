@@ -32,6 +32,16 @@ class Tripclip < ActiveRecord::Base
     location.x = lng.to_f
   end
 
+  def as_json(arg=nil)
+    {
+      "name" => name,
+      "address" => address,
+      "latitude" => latitude,
+      "longitude" => longitude,
+      "id" => id
+    }
+  end
+
   private
 
   def ensure_location

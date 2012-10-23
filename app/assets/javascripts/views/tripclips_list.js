@@ -8,15 +8,7 @@ views.TripclipsList = Backbone.View.extend({
   },
 
   render: function() {
-    var data = {
-      tripclips: this.collection.map(function(tripclip) {
-        return {
-          name: tripclip.get("name"),
-          id: tripclip.get("id")
-        };
-      })
-    };
-
+    var data = presenters.present("tripclipsList", this.collection);
     var html = SMT["tripclips/list"](data);
     this.$el.html(html);
   },

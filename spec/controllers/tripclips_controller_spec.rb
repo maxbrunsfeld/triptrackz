@@ -11,7 +11,7 @@ describe TripclipsController do
       it "renders the page with all tripclips" do
         get :index
         response.should render_template("tripclips/index")
-        names = assigns(:json).map { |hash| hash[:name] }
+        names = assigns(:tripclips).map(&:name)
         names.should include(@tripclip1.name, @tripclip2.name)
       end
     end
@@ -37,12 +37,8 @@ describe TripclipsController do
             :west => west,
             :east => east
           }
-          json = JSON.parse(response.body)
-          json.should == [{
-            "name" => tripclip.name,
-            "latitude" => tripclip.latitude,
-            "longitude" => tripclip.longitude
-          }]
+
+          response.body.should == [tripclip].to_json
         end
       end
 

@@ -8,7 +8,8 @@
 
   <h2>Most Popular Tripclips</h2>
   <ul id="tripclips-list">
-    <%= render "tripclips/list", :mustache => { :tripclips => @json } %>
+    <% context = Presenter.present("tripclipsList", @tripclips) %>
+    <%= render "tripclips/list", :mustache => context %>
   </ul>
 </div>
 
