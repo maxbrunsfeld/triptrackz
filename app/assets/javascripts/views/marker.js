@@ -34,7 +34,7 @@ views.Marker = Backbone.View.extend({
   },
 
   select: function() {
-    var pinColor = "0f0";
+    var pinColor = "fff96b";
     this.marker.setIcon(
       new google.maps.MarkerImage(
         "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
@@ -45,7 +45,7 @@ views.Marker = Backbone.View.extend({
   },
 
   deselect: function() {
-    var pinColor = "f00";
+    var pinColor = "FF7c71";
     this.marker.setIcon(
       new google.maps.MarkerImage(
         "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
