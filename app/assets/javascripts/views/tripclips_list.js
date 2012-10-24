@@ -3,8 +3,8 @@ views.TripclipsList = Backbone.View.extend({
     "click a": "itemClicked"
   },
 
-  initialize: function(options) {
-    this.collection.on("reset", this.render, this);
+  initialize: function() {
+    this.collection.on("add", this.render, this);
   },
 
   render: function() {

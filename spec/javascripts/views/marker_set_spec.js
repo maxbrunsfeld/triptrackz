@@ -7,9 +7,9 @@ describe("views.MarkerSet", function() {
     view = new views.MarkerSet({ mapView: mapView, collection: collection });
   });
 
-  describe("when the collection changes", function() {
+  describe("when a model is added to the collection", function() {
     beforeEach(function() {
-      collection.reset([
+      collection.add([
         {
           latitude: 1,
           longitude: 2,
@@ -25,7 +25,7 @@ describe("views.MarkerSet", function() {
       ]);
     });
 
-    it("makes a marker view for each tripclip in the collection", function() {
+    it("makes a marker view for the tripclip", function() {
       expect(view.markers.length).to.equal(2);
       expect(view.markers[0].model).to.equal(collection.at(0).point);
       expect(view.markers[1].model).to.equal(collection.at(1).point);
@@ -34,25 +34,6 @@ describe("views.MarkerSet", function() {
     it("does not make the markers editable", function() {
       expect(view.markers[0].readOnly).to.be.true;
       expect(view.markers[1].readOnly).to.be.true;
-    });
-
-    it("removes any previous markers", function() {
-      var oldMarkers = view.markers;
-      _.each(oldMarkers, function(oldMarker) {
-        sinon.spy(oldMarker, "remove");
-      });
-
-      collection.reset([
-        {
-          latitude: 5,
-          longitude: 6,
-          address: "466 37th St #4"
-        }
-      ]);
-
-      _.each(oldMarkers, function(oldMarker) {
-        expect(oldMarker.remove).to.have.been.called;
-      });
     });
 
     describe("when a model in the collection is selected", function() {

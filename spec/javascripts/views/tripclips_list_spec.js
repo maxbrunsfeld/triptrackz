@@ -14,7 +14,7 @@ describe("views.TripclipsList", function() {
     var links;
 
     beforeEach(function() {
-      collection.reset([
+      collection.add([
         {
           name: "zebra",
           latitude: 12,

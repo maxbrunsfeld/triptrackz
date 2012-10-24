@@ -30,17 +30,34 @@ describe("pages.TripclipsIndex", function() {
   });
 
   describe("when the region changes", function() {
-    it("refetches the tripclips collection", function() {
-      var fakeServer = sinon.fakeServer.create();
+    var fakeServer;
 
+    beforeEach(function() {
+      fakeServer = sinon.fakeServer.create();
       page.region.boundaries = new google.maps.LatLngBounds(
         new google.maps.LatLng(1, 2),
         new google.maps.LatLng(3, 4)
       );
       page.region.trigger("change");
+    });
 
+    it("re-fetches the tripclips collection", function() {
       expect(fakeServer.requests.length).to.equal(1);
       expect(fakeServer.requests[0].url).to.equal(page.tripclips.url());
+    });
+
+    describe("when the fetch completes", function() {
+      it("adds the tripclips from the response to the collection", function() {
+        var addSpy = sinon.spy();
+        page.tripclips.on("add", addSpy);
+        fakeServer.requests[0].respond(
+          200,
+          {},
+          '[{"id": 1}, {"id": 2}, {"id": 3}]'
+        );
+
+        expect(addSpy).to.have.been.calledThrice;
+      });
     });
   });
 

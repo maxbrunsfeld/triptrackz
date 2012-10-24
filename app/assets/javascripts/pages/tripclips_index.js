@@ -3,7 +3,9 @@ pages.TripclipsIndex = function(options) {
   this.region = new models.Region({ points: this.points });
   this.tripclips = new collections.Tripclips({ region: this.region });
 
-  this.region.on("change", this.tripclips.fetch, this.tripclips);
+  this.region.on("change", function() {
+    this.tripclips.fetch({ add: true });
+  }, this);
 
   this.map = new views.Map({
     el: options.mapEl,

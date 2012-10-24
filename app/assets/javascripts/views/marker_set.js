@@ -2,22 +2,19 @@ views.MarkerSet = Backbone.View.extend({
   
   initialize: function(options) {
     this.mapView = options.mapView;
-    this.collection.on("reset", this.drawMarkers, this);
+    this.collection.on("add", this.modelAdded, this);
     this.collection.on("select", this.modelSelected, this);
+    this.markers = [];
   },
   
-  drawMarkers: function() {
-    _.each(this.markers, function(oldMarker) {
-      oldMarker.remove();
-    });
-
-    this.markers = this.collection.map(function(tripclip) {
-      return new views.Marker({
-        model: tripclip.point,
+  modelAdded: function(model) {
+    this.markers.push(
+      new views.Marker({
+        model: model.point,
         mapView: this.mapView,
         readOnly: true
-      });
-    }, this);
+      })
+    );
   },
 
   modelSelected: function(model) {
