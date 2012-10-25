@@ -7,14 +7,11 @@
   </form>
 
   <h2>Most Popular Tripclips</h2>
-  <ul id="tripclips-list">
-    <% context = Presenter.present("tripclipsList", @tripclips) %>
-    <%= render "tripclips/list", :mustache => context %>
-  </ul>
+  <ul id="tripclips-list"/>
 </div>
 
 <div class="last column">
-  <div id="map"></div>
+  <div id="map"/>
 </div>
 
 <script>
