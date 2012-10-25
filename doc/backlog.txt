@@ -1,7 +1,3 @@
-I can click a marker on the map to expand a tripclip
-
-When I click a tripclip in the list, map zooms to tripclip's marker
-
 I can play the audio clip for a tripclip
   - when I click the tripclip in the list, the expanded view includes
     an audio player
@@ -13,3 +9,5 @@ From the tripclips list page, I can navigate to the new tripclip page
 I can see my profile
   - I navigate to my profile with a link in the header
   - the page shows a list of my tripclips
+
+When I click a tripclip in the list, map zooms to tripclip's marker
