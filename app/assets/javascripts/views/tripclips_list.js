@@ -5,6 +5,7 @@ views.TripclipsList = Backbone.View.extend({
 
   initialize: function() {
     this.collection.on("add", this.render, this);
+    this.collection.on("select", this.modelSelected, this);
   },
 
   render: function() {
@@ -16,7 +17,14 @@ views.TripclipsList = Backbone.View.extend({
   itemClicked: function(e) {
     e.preventDefault();
     var link = $(e.target);
-    var id = link.data("id");
+    var id = link.closest("li").data("id");
     this.collection.selectModel(this.collection.get(id));
+  },
+
+  modelSelected: function(model) {
+    var lis = this.$("li");
+    var selectedLi = lis.filter("[data-id=" + model.id + "]");
+    lis.removeClass("selected");
+    selectedLi.addClass("selected");
   }
 });

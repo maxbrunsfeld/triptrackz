@@ -31,19 +31,21 @@ describe("models.Tripclip", function() {
   });
 
   describe("#toJSON", function() {
-    var json, name, lat, lng, address;
+    var json, name, lat, lng, address, description;
 
     beforeEach(function() {
       name = "Mt Diablo Fiasco";
       lat = 34.0;
       lng = 35.0;
       address = "Summit Rd, Walnut Creek, CA";
+      description = " max is an asshole";
 
       model.set({
         name: name,
         latitude: lat,
         longitude: lng,
-        address: address
+        address: address,
+        description: description
       });
 
       json = model.toJSON();
@@ -53,10 +55,11 @@ describe("models.Tripclip", function() {
       expect(json.name).to.equal(name);
     });
 
-    it("includes the latitude, longitude and address", function() {
+    it("includes the latitude, longitude, address, and description", function() {
       expect(json.latitude).to.equal(lat);
       expect(json.longitude).to.equal(lng);
       expect(json.address).to.equal(address);
+      expect(json.description).to.equal(description);
     });
   });
 

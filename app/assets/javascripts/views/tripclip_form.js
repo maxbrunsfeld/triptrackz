@@ -8,7 +8,8 @@ views.TripclipForm = Backbone.View.extend({
 
     this.model.setFileInput(this.$("input[name='clip']"));
     this.model.save({
-      name: this.$("input[name='name']").val()
+      name: this.$("input[name='name']").val(),
+      description: this.$("textarea[name='description']").val()
     });
   }
 });

@@ -1,5 +1,6 @@
 class Tripclip < ActiveRecord::Base
-  attr_accessible :name, :location, :latitude, :longitude, :clip, :address
+  attr_accessible :name, :location, :latitude, :longitude, :clip, :address,
+                  :description
   has_attached_file :clip
   belongs_to :user
 
@@ -38,7 +39,8 @@ class Tripclip < ActiveRecord::Base
       "address" => address,
       "latitude" => latitude,
       "longitude" => longitude,
-      "id" => id
+      "id" => id,
+      "description" => description
     }
   end
 

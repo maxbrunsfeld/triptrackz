@@ -6,8 +6,7 @@ class TripclipsController < ApplicationController
   end
 
   def create
-    data = params[:tripclip]
-    current_user.tripclips.create(data)
+    current_user.tripclips.create(params[:tripclip])
     head :ok
   end
 

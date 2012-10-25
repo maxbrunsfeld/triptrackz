@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121021105438) do
+ActiveRecord::Schema.define(:version => 20121024060545) do
 
   create_table "tripclips", :force => true do |t|
     t.string   "name",                             :null => false
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20121021105438) do
     t.integer  "clip_file_size"
     t.datetime "clip_updated_at"
     t.string   "address"
+    t.text     "description"
   end
 
   create_table "users", :force => true do |t|

@@ -3,7 +3,7 @@ describe("collections.Tripclips", function() {
 
   beforeEach(function() {
     region = new models.Region({ points: [] });
-    collection = new collections.Tripclips({ region: region });
+    collection = new collections.Tripclips([], { region: region });
   });
 
   it("contains tripclip models", function() {

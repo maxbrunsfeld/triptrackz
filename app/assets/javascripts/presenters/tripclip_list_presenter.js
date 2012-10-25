@@ -7,7 +7,8 @@
   function presentTripclip(tripclip) {
     return {
       id: tripclip.id,
-      name: tripclip.name
+      name: tripclip.name,
+      description: tripclip.description
     };
   }
 

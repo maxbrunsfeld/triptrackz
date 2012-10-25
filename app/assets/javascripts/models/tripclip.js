@@ -30,7 +30,8 @@ models.Tripclip = Backbone.Model.extend({
       name: this.get("name"),
       latitude: this.point.location().lat(),
       longitude: this.point.location().lng(),
-      address: this.point.address()
+      address: this.point.address(),
+      description: this.get("description")
     };
   },
 

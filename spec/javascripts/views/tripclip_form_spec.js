@@ -1,11 +1,17 @@
 describe("views.TripclipForm", function() {
-  var view, nameInput, fileInput, button, model;
+  var view, nameInput, fileInput, button, model, descriptionInput;
 
   beforeEach(function() {
     nameInput = $("<input/>").attr("name", "name");
     fileInput = $("<input/>").attr("name", "clip");
     button = $("<button/>").attr("name", "submit");
-    var form = $("<form/>").append(nameInput, fileInput, button);
+    descriptionInput = $("<textarea/>").attr("name", "description");
+    var form = $("<form/>").append(
+      nameInput,
+      fileInput,
+      descriptionInput,
+      button
+    );
 
     model = new models.Tripclip();
     view = new views.TripclipForm({ el: form, model: model });
@@ -16,6 +22,7 @@ describe("views.TripclipForm", function() {
       sinon.stub(model, "setFileInput");
       sinon.stub(model, "save");
       nameInput.val("Adventure in Temescal");
+      descriptionInput.val("This is a really great tour of Temescal.")
     });
 
     it("sets the file input on the model", function() {
@@ -27,7 +34,8 @@ describe("views.TripclipForm", function() {
     it("saves the tripclip model", function() {
       button.click();
       expect(model.save).to.have.been.calledWith({
-        name: "Adventure in Temescal"
+        name: "Adventure in Temescal",
+        description: "This is a really great tour of Temescal."
       });
     });
   });

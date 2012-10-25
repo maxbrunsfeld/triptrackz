@@ -67,7 +67,8 @@ describe Tripclip do
         "latitude" => tripclip.latitude,
         "longitude" => tripclip.longitude,
         "address" => tripclip.address,
-        "id" => tripclip.id
+        "id" => tripclip.id,
+        "description" => tripclip.description
       }
     end
   end

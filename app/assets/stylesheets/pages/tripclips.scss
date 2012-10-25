@@ -2,8 +2,17 @@
 
 body.tripclips {
 
-  input[type='text'] {
+  input[type='text'], input[type='file'], textarea {
+    width: 350px;
     margin-right: $base-line-height;
+  }
+
+  input[name='name'], textarea[name='description'] {
+    display: block;
+  }
+
+  textarea {
+    height: 150px;
   }
 
   #map {
