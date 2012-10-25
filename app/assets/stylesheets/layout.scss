@@ -12,43 +12,41 @@ $min-width: 960px;
 
 #main, #header {
   padding: $base-line-height 0;
+
+  > .inner {
+    width: 80%;
+    margin: 0 auto;
+    min-width: $min-width;
+  }
 }
 
-#inner-header, #inner-main {
-  width: 80%;
-  margin: 0 auto;
-  min-width: $min-width;
-}
-
-#inner-header {
+#header {
   .right {
     float: right;
   }
 }
 
-#inner-main {
-  .column {
-    width: 49.9%;
-    display: inline-block;
-  }
+.column {
+  width: 49.9%;
+  display: inline-block;
+  float: left;
 
-  .column {
-    float: left;
-
-    .column-inner {
-      padding-right: $base-line-height;
-    }
-  }
-
-  .last.column {
-    padding-right: 0;
+  &.last {
     float: right;
-
-    .column-inner {
-      padding-right: 0;
-    }
   }
 
+  > .inner {
+    padding-left: $base-line-height / 2;
+    padding-right: $base-line-height / 2;
+  }
+
+  &.last > .inner {
+    padding-right: 0;
+  }
+
+  &.first > .inner {
+    padding-left: 0;
+  }
 }
 
 #title {

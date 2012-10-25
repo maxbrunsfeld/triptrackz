@@ -22,8 +22,12 @@ body.tripclips {
 
   #tripclips-list {
     li {
-      padding: $base-line-height 0;
+      padding: ($base-line-height / 2) 0;
       border-bottom: 1px solid #e4e4e4;
+
+      &:first-child {
+        padding-top: 0;
+      }
 
       .description {
         height: 0;
