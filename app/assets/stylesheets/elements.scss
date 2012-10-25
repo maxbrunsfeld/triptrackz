@@ -4,6 +4,12 @@ body {
   font-family: Helvetica Neue, Helvetica;
 }
 
+a {
+  text-decoration: none;
+  color: #444;
+  font-weight: bold;
+}
+
 %text-input, button {
   font-size: $base-font-size;
   padding: ($base-line-height / 2);
@@ -25,6 +31,11 @@ input {
   &[type='file'] {
     @extend %text-input;
   }
+}
+
+textarea {
+  @extend %text-input;
+  resize: none;
 }
 
 button {

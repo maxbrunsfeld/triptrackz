@@ -1,20 +1,26 @@
 <div class="column">
-  <h2>New Tripclip</h2>
-  <form id="address-form">
-    <input name="location" type="text" placeholder="Location"/>
-    <button name="go">Go</button>
-  </form>
+  <div class="column-inner">
 
-  <form id="tripclip-form">
-    <input name="name" type="text" placeholder="Name"/>
-    <textarea name="description" placeholder="Description"></textarea>
-    <input name="clip" type="file" placeholder="Clip"/>
-    <button name="submit">Create Tripclip</button>
-  </form>
+    <h2>New Tripclip</h2>
+    <form id="address-form">
+      <input name="location" type="text" placeholder="Location"/>
+      <button name="go">Go</button>
+    </form>
+
+    <form id="tripclip-form">
+      <input name="name" type="text" placeholder="Name"/>
+      <textarea name="description" placeholder="Description"></textarea>
+      <input name="clip" type="file" placeholder="Clip"/>
+      <button name="submit">Create Tripclip</button>
+    </form>
+
+  </div>
 </div>
 
 <div class="last column">
-  <div id="map"></div>
+  <div class="column-inner">
+    <div id="map"></div>
+  </div>
 </div>
 
 <script>

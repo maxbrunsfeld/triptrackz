@@ -1,4 +1,5 @@
 @import "definitions";
+@import "compass/css3/transition";
 
 body.tripclips {
 
@@ -17,6 +18,26 @@ body.tripclips {
 
   #map {
     height: 20 * $base-line-height;
+  }
+
+  #tripclips-list {
+    li {
+      padding: $base-line-height 0;
+      border-bottom: 1px solid #e4e4e4;
+
+      .description {
+        height: 0;
+        overflow: hidden;
+        @include transition-property(height);
+        @include transition-duration(200ms);
+      }
+
+      &.selected {
+        .description {
+          height: 30px;
+        }
+      }
+    }
   }
 
 }

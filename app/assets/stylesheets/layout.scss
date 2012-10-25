@@ -34,12 +34,21 @@ $min-width: 960px;
 
   .column {
     float: left;
+
+    .column-inner {
+      padding-right: $base-line-height;
+    }
   }
 
   .last.column {
     padding-right: 0;
     float: right;
+
+    .column-inner {
+      padding-right: 0;
+    }
   }
+
 }
 
 #title {
