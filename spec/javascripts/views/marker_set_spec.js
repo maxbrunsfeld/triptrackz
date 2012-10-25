@@ -36,6 +36,16 @@ describe("views.MarkerSet", function() {
       expect(view.markers[1].readOnly).to.be.true;
     });
 
+    describe("when a marker is clicked", function() {
+      it("selects the corresponding model in the collection", function() {
+        google.maps.event.trigger(view.markers[1].marker, "click");
+        expect(collection.selectedModel).to.equal(collection.at(1));
+
+        google.maps.event.trigger(view.markers[0].marker, "click");
+        expect(collection.selectedModel).to.equal(collection.at(0));
+      });
+    });
+
     describe("when a model in the collection is selected", function() {
       it("marks that model's view as selected", function() {
         sinon.spy(view.markers[1], "select");

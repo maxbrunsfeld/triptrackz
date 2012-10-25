@@ -8,12 +8,17 @@ views.MarkerSet = Backbone.View.extend({
   },
   
   modelAdded: function(model) {
-    this.markers.push(
-      new views.Marker({
-        model: model.point,
-        mapView: this.mapView,
-        readOnly: true
-      })
+    var marker = new views.Marker({
+      model: model.point,
+      mapView: this.mapView,
+      readOnly: true
+    });
+
+    this.markers.push(marker);
+    google.maps.event.addListener(
+      marker.marker,
+      "click",
+      _.bind(this.markerClicked, this, model)
     );
   },
 
@@ -25,6 +30,10 @@ views.MarkerSet = Backbone.View.extend({
         marker.deselect();
       }
     });
+  },
+
+  markerClicked: function(model) {
+    this.collection.selectModel(model);
   }
   
 });
