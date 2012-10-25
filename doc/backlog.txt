@@ -1,0 +1,19 @@
+I can add a description of a tripclip
+  - there's a text area for entering tripclip description
+  - the description appears on tripclips list page when user clicks a tripclip
+
+I can click a marker on the map to expand a tripclip
+
+When I click a tripclip in the list, map zooms to tripclip's marker
+
+I can play the audio clip for a tripclip
+  - when I click the tripclip in the list, the expanded view includes
+    an audio player
+  - the tripclip's length is displayed
+  - clicking play in the audio player plays the tripclip
+
+From the tripclips list page, I can navigate to the new tripclip page
+
+I can see my profile
+  - I navigate to my profile with a link in the header
+  - the page shows a list of my tripclips
