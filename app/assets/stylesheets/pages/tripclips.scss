@@ -23,13 +23,17 @@ body.tripclips {
   #tripclips-list {
     li {
       padding: ($base-line-height / 2) 0;
-      border-bottom: 1px solid #e4e4e4;
+      border-bottom: 1px solid #ddd;
 
       &:first-child {
         padding-top: 0;
       }
 
       .description {
+        margin-bottom: $base-line-height;
+      }
+
+      .details {
         height: 0;
         overflow: hidden;
         @include transition-property(height);
@@ -37,11 +41,10 @@ body.tripclips {
       }
 
       &.selected {
-        .description {
-          height: 30px;
+        .details {
+          height: 85px;
         }
       }
     }
   }
-
 }

@@ -1,3 +1,8 @@
+I can play the audio clip for a tripclip
+  - when I click the tripclip in the list, the expanded view includes
+    an audio player
+  - clicking play in the audio player plays the tripclip
+
 I can click a marker on the map to expand a tripclip
 
 I can add a description of a tripclip

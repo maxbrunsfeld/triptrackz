@@ -8,7 +8,8 @@
     return {
       id: tripclip.id,
       name: tripclip.name,
-      description: tripclip.description
+      description: tripclip.description,
+      clip_url: tripclip.clip_url
     };
   }
 

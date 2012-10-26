@@ -60,16 +60,19 @@ describe Tripclip do
 
   describe "#as_json" do
     let(:tripclip) { create(:tripclip) }
+    subject { tripclip.as_json }
 
-    specify do
-      tripclip.as_json.should == {
-        "name" => tripclip.name,
-        "latitude" => tripclip.latitude,
-        "longitude" => tripclip.longitude,
-        "address" => tripclip.address,
-        "id" => tripclip.id,
-        "description" => tripclip.description
-      }
+    its(["id"]) { should == tripclip.id }
+    its(["name"]) { should == tripclip.name }
+    its(["address"]) { should == tripclip.address }
+    its(["latitude"]) { should == tripclip.latitude }
+    its(["longitude"]) { should == tripclip.longitude }
+    its(["description"]) { should == tripclip.description }
+    its(["clip_url"]) { should == tripclip.clip.url }
+
+    it "doesn't include all of the file columns related to the clip" do
+      clip_related_keys = subject.keys.select { |key| key.include?("clip") }
+      clip_related_keys.should =~ ["clip_url"]
     end
   end
 

@@ -35,12 +35,13 @@ class Tripclip < ActiveRecord::Base
 
   def as_json(arg=nil)
     {
+      "id" => id,
       "name" => name,
       "address" => address,
       "latitude" => latitude,
       "longitude" => longitude,
-      "id" => id,
-      "description" => description
+      "description" => description,
+      "clip_url" => clip.url
     }
   end
 

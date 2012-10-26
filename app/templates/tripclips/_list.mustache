@@ -1,6 +1,16 @@
 {{#tripclips}}
   <li data-id="{{id}}">
+
     <a href="#">{{name}}</a>
-    <p class="description">{{description}}</p>
+
+    <div class="details">
+      <p class="description">{{description}}</p>
+      <audio
+        controls="controls"
+        src="{{clip_url}}"
+        preload="metadata"
+      ></audio>
+    </div>
+
   </li>
 {{/tripclips}}

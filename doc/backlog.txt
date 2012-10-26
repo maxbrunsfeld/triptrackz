@@ -1,8 +1,4 @@
-I can play the audio clip for a tripclip
-  - when I click the tripclip in the list, the expanded view includes
-    an audio player
-  - the tripclip's length is displayed
-  - clicking play in the audio player plays the tripclip
+I can see the length of a tripclip
 
 From the tripclips list page, I can navigate to the new tripclip page
 
