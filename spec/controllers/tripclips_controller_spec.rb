@@ -1,6 +1,14 @@
 require "spec_helper"
 
 describe TripclipsController do
+  let(:user) do
+    User.create!({:name => "Hojo", :email => "hojo@example.com"})
+  end
+
+  before do
+    sign_in(user)
+  end
+
   describe "#index" do
     before do
       @tripclip1 = create(:tripclip)
@@ -74,14 +82,6 @@ describe TripclipsController do
         :latitude => 34.0,
         :longitude => -122.0
       }
-    end
-
-    let(:user) do
-      User.create!({:name => "Hojo", :email => "hojo@example.com"})
-    end
-
-    before do
-      controller.set_current_user(user)
     end
 
     it "creates a tripclip with the given parameters" do

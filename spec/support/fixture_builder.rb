@@ -4,10 +4,10 @@ FixtureBuilder.configure do |fbuilder|
     "spec/support/fixture_builder.rb"
   ]
 
-  fbuilder.factory do
+  fbuilder.factory do |f|
 
-    FactoryGirl.create(:user)
-    FactoryGirl.create(:tripclip)
+    f.name(:dude, FactoryGirl.create(:user))
+    f.name(:clip, FactoryGirl.create(:tripclip))
 
   end
 end
