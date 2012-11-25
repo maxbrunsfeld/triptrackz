@@ -9,4 +9,5 @@ TripcastStore::Application.routes.draw do
   get '/specs' => "specs#index"
 
   resources 'tripclips'
+  resources 'users'
 end
