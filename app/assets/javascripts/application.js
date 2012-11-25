@@ -5,3 +5,4 @@
 //= require ./presenters
 //= require mustache
 //= require_tree ../../templates
+//= require bootstrap-modal

@@ -5,46 +5,7 @@ body {
 }
 
 a {
-  text-decoration: none;
   color: #444;
-  font-weight: 500;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-%text-input, button {
-  font-size: $base-font-size;
-  padding: ($base-line-height / 2);
-  @include border-radius(10px);
-
-  &:focus {
-    outline: none;
-    @include box-shadow(0 0 8px #aaa);
-  }
-}
-
-%text-input {
-  border: 1px solid #aaa;
-  margin-bottom: $base-line-height;
-}
-
-input {
-  &[type='text'],
-  &[type='file'] {
-    @extend %text-input;
-  }
-}
-
-textarea {
-  @extend %text-input;
-  resize: none;
-}
-
-button {
-  border-width: 1px;
-  @include background(linear-gradient(top, $button-top, $button-bottom));
 }
 
 h2 {
