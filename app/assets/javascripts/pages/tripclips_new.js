@@ -3,6 +3,9 @@ pages.TripclipsNew = function(options) {
   this.point = this.tripclip.point;
   this.region = new models.Region({ points: [this.point] });
 
+  this.soundcloudTrackSearch = new views.SoundcloudTrackSearch({
+    el: options.modalEl
+  });
   this.map = new views.Map({
     el: options.mapEl,
     model: this.region

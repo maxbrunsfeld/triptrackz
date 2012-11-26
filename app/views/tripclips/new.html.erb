@@ -1,17 +1,18 @@
+<div>
+  <input name="name" type="text" placeholder="Name"/>
+</div>
+
 <div class="first column">
+  <p>tracks list</p>
+  <a href="#add-soundcloud-track" role="button" data-toggle="modal">Add Soundcloud Track</a>
+</div>
+
+<div class="column">
   <div class="inner">
 
-    <h2>New Tripclip</h2>
     <form id="address-form">
       <input name="location" type="text" placeholder="Location"/>
-      <button name="go">Go</button>
-    </form>
-
-    <form id="tripclip-form">
-      <input name="name" type="text" placeholder="Name"/>
-      <textarea name="description" placeholder="Description"></textarea>
-      <input name="clip" type="file" placeholder="Clip"/>
-      <button name="submit">Create Tripclip</button>
+      <button class="btn" name="go">Go</button>
     </form>
 
   </div>
@@ -23,8 +24,25 @@
   </div>
 </div>
 
+<div id="add-soundcloud-track" class="modal hide fade" tabindex="-1" role="dialog">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Add Soundcloud Track</h3>
+  </div>
+  <div class="modal-body">
+    <input type="text" name="search" placeholder="Title, Artist, Genre..."/>
+    <button name="search" class="btn">search</button>
+    <ol class="tracks"></ol>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal">Close</button>
+    <button class="btn btn-primary">Add Track</button>
+  </div>
+</div>
+
 <script>
   new pages.TripclipsNew({
+    modalEl: $("#add-soundcloud-track"),
     mapEl: $("#map"),
     addressEl: $("#address-form"),
     tripclipFormEl: $("#tripclip-form")

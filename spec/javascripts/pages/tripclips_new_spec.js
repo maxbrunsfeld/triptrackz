@@ -1,14 +1,16 @@
 describe("pages.TripclipsNew", function() {
-  var page, mapEl, tripclipFormEl, addressEl;
+  var page, mapEl, tripclipFormEl, addressEl, modalEl;
 
   beforeEach(function() {
+    modalEl = $("<div/>");
     mapEl = $("<div/>");
     addressEl = $("<form/>");
     tripclipFormEl = $("<form/>");
     page = new pages.TripclipsNew({
       mapEl: mapEl,
       addressEl: addressEl,
-      tripclipFormEl: tripclipFormEl
+      tripclipFormEl: tripclipFormEl,
+      modalEl: modalEl
     });
   });
 
@@ -44,5 +46,10 @@ describe("pages.TripclipsNew", function() {
     expect(page.form).to.be.an.instanceOf(views.TripclipForm);
     expect(page.form.model).to.eql(page.tripclip);
     expect(page.form.el).to.equal(tripclipFormEl[0]);
+  });
+
+  it("builds a soundcloud track search view", function() {
+    expect(page.soundcloudTrackSearch).to.be.an.instanceOf(views.SoundcloudTrackSearch);
+    expect(page.soundcloudTrackSearch.el).to.equal(modalEl[0])
   });
 });
