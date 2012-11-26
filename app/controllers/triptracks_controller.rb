@@ -1,30 +1,30 @@
-class TripclipsController < ApplicationController
+class TriptracksController < ApplicationController
   wrap_parameters :format => [:json, :multipart_form]
 
   def new
-    @tripclip = Tripclip.new
+    @triptrack = Triptrack.new
   end
 
   def create
-    current_user.tripclips.create(params[:tripclip])
+    current_user.triptracks.create(params[:triptrack])
     head :ok
   end
 
   def index
     if params[:north]
-      @tripclips = Tripclip.within_box(
+      @triptracks = Triptrack.within_box(
         params[:north],
         params[:south],
         params[:east],
         params[:west]
       )
     else
-      @tripclips = Tripclip.all
+      @triptracks = Triptrack.all
     end
 
     respond_to do |format|
       format.html { render }
-      format.json { render :json => @tripclips }
+      format.json { render :json => @triptracks }
     end
   end
 

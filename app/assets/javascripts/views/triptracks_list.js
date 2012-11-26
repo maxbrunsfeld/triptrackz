@@ -1,4 +1,4 @@
-views.TripclipsList = Backbone.View.extend({
+views.TriptracksList = Backbone.View.extend({
   events: {
     "click a": "itemClicked"
   },
@@ -9,8 +9,8 @@ views.TripclipsList = Backbone.View.extend({
   },
 
   render: function() {
-    var data = presenters.present("tripclipsList", this.collection);
-    var html = SMT["tripclips/list"](data);
+    var data = presenters.present("triptracksList", this.collection);
+    var html = SMT["triptracks/list"](data);
     this.$el.html(html);
   },
 

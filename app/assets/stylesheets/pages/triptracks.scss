@@ -1,7 +1,7 @@
 @import "definitions";
 @import "compass/css3/transition";
 
-body.tripclips {
+body.triptracks {
 
   input[type='text'], input[type='file'], textarea {
     width: 350px;
@@ -20,7 +20,7 @@ body.tripclips {
     height: 20 * $base-line-height;
   }
 
-  #tripclips-list {
+  #triptracks-list {
     li {
       padding: ($base-line-height / 2) 0;
       border-bottom: 1px solid #ddd;

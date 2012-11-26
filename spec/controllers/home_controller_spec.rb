@@ -11,9 +11,9 @@ describe HomeController do
         controller.set_current_user(user)
       end
 
-      it "redirects to the tripclips page" do
+      it "redirects to the triptracks page" do
         get :index
-        response.should redirect_to tripclips_path
+        response.should redirect_to triptracks_path
       end
     end
 

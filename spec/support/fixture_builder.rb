@@ -7,7 +7,7 @@ FixtureBuilder.configure do |fbuilder|
   fbuilder.factory do |f|
 
     f.name(:dude, FactoryGirl.create(:user))
-    f.name(:clip, FactoryGirl.create(:tripclip))
+    f.name(:clip, FactoryGirl.create(:triptrack))
 
   end
 end

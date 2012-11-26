@@ -1,10 +1,10 @@
-pages.TripclipsIndex = function(options) {
+pages.TriptracksIndex = function(options) {
   this.points = [new models.Point(), new models.Point()];
   this.region = new models.Region({ points: this.points });
-  this.tripclips = new collections.Tripclips([], { region: this.region });
+  this.triptracks = new collections.Triptracks([], { region: this.region });
 
   this.region.on("change", function() {
-    this.tripclips.fetch({ add: true });
+    this.triptracks.fetch({ add: true });
   }, this);
 
   this.map = new views.Map({
@@ -15,12 +15,12 @@ pages.TripclipsIndex = function(options) {
     el: options.addressEl,
     models: this.points
   });
-  this.tripclipsList = new views.TripclipsList({
-    collection: this.tripclips,
+  this.triptracksList = new views.TriptracksList({
+    collection: this.triptracks,
     el: options.listEl
   });
   this.markerSet = new views.MarkerSet({
-    collection: this.tripclips,
+    collection: this.triptracks,
     mapView: this.map
   });
 };

@@ -1,9 +1,9 @@
-class AddClipColumnsToTripclips < ActiveRecord::Migration
+class AddClipColumnsToTriptracks < ActiveRecord::Migration
   def up
-    add_attachment :tripclips, :clip
+    add_attachment :triptracks, :clip
   end
 
   def down
-    remove_attachment :tripclips, :clip
+    remove_attachment :triptracks, :clip
   end
 end

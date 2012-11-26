@@ -1,6 +1,6 @@
-pages.TripclipsNew = function(options) {
-  this.tripclip = new models.Tripclip()
-  this.point = this.tripclip.point;
+pages.TriptracksNew = function(options) {
+  this.triptrack = new models.Triptrack()
+  this.point = this.triptrack.point;
   this.region = new models.Region({ points: [this.point] });
 
   this.soundcloudTrackSearch = new views.SoundcloudTrackSearch({
@@ -18,8 +18,8 @@ pages.TripclipsNew = function(options) {
     el: options.addressEl,
     models: [this.point]
   });
-  this.form = new views.TripclipForm({
-    el: options.tripclipFormEl,
-    model: this.tripclip
+  this.form = new views.TriptrackForm({
+    el: options.triptrackFormEl,
+    model: this.triptrack
   });
 };

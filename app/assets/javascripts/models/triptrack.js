@@ -1,10 +1,10 @@
-models.Tripclip = Backbone.Model.extend({
+models.Triptrack = Backbone.Model.extend({
 
-  url: "/tripclips",
+  url: "/triptracks",
 
   constructor: function(attrs, options) {
     this.point = new models.Point();
-    return models.Tripclip.__super__.constructor.apply(this, arguments);
+    return models.Triptrack.__super__.constructor.apply(this, arguments);
   },
 
   set: function(attrs) {
@@ -22,7 +22,7 @@ models.Tripclip = Backbone.Model.extend({
       delete attrs.address;
     }
 
-    return models.Tripclip.__super__.set.apply(this, arguments);
+    return models.Triptrack.__super__.set.apply(this, arguments);
   },
 
   toJSON: function() {

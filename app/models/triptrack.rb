@@ -1,4 +1,4 @@
-class Tripclip < ActiveRecord::Base
+class Triptrack < ActiveRecord::Base
   attr_accessible :name, :location, :latitude, :longitude, :clip, :address,
                   :description
   has_attached_file :clip

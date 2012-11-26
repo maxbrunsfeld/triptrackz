@@ -1,4 +1,4 @@
-describe("pages.TripclipsIndex", function() {
+describe("pages.TriptracksIndex", function() {
   var page, mapEl, addressEl, listEl;
 
   beforeEach(function() {
@@ -6,7 +6,7 @@ describe("pages.TripclipsIndex", function() {
     addressEl = $("<form/>");
     listEl = $("<ul></ul>");
 
-    page = new pages.TripclipsIndex({
+    page = new pages.TriptracksIndex({
       mapEl: mapEl,
       addressEl: addressEl,
       listEl: listEl
@@ -24,9 +24,9 @@ describe("pages.TripclipsIndex", function() {
     expect(page.region.points).to.eql(page.points);
   });
 
-  it("builds a tripclips collection with the region", function() {
-    expect(page.tripclips).to.be.an.instanceOf(collections.Tripclips);
-    expect(page.tripclips.region).to.equal(page.region);
+  it("builds a triptracks collection with the region", function() {
+    expect(page.triptracks).to.be.an.instanceOf(collections.Triptracks);
+    expect(page.triptracks.region).to.equal(page.region);
   });
 
   describe("when the region changes", function() {
@@ -41,15 +41,15 @@ describe("pages.TripclipsIndex", function() {
       page.region.trigger("change");
     });
 
-    it("re-fetches the tripclips collection", function() {
+    it("re-fetches the triptracks collection", function() {
       expect(fakeServer.requests.length).to.equal(1);
-      expect(fakeServer.requests[0].url).to.equal(page.tripclips.url());
+      expect(fakeServer.requests[0].url).to.equal(page.triptracks.url());
     });
 
     describe("when the fetch completes", function() {
-      it("adds the tripclips from the response to the collection", function() {
+      it("adds the triptracks from the response to the collection", function() {
         var addSpy = sinon.spy();
-        page.tripclips.on("add", addSpy);
+        page.triptracks.on("add", addSpy);
         fakeServer.requests[0].respond(
           200,
           {},
@@ -61,10 +61,10 @@ describe("pages.TripclipsIndex", function() {
     });
   });
 
-  it("builds a tripclips list view with the collection", function() {
-    expect(page.tripclipsList).to.be.an.instanceOf(views.TripclipsList);
-    expect(page.tripclipsList.collection).to.equal(page.tripclips);
-    expect(page.tripclipsList.el).to.equal(listEl[0]);
+  it("builds a triptracks list view with the collection", function() {
+    expect(page.triptracksList).to.be.an.instanceOf(views.TriptracksList);
+    expect(page.triptracksList.collection).to.equal(page.triptracks);
+    expect(page.triptracksList.el).to.equal(listEl[0]);
   });
 
   it("builds a map view with the region", function() {
@@ -81,7 +81,7 @@ describe("pages.TripclipsIndex", function() {
 
   it("builds a marker set view with the collection", function() {
     expect(page.markerSet).to.be.an.instanceOf(views.MarkerSet);
-    expect(page.markerSet.collection).to.equal(page.tripclips);
+    expect(page.markerSet.collection).to.equal(page.triptracks);
     expect(page.markerSet.mapView).to.equal(page.map);
   });
 

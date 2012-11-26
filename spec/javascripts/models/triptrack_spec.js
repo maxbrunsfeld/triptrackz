@@ -1,8 +1,8 @@
-describe("models.Tripclip", function() {
+describe("models.Triptrack", function() {
   var point, model;
 
   beforeEach(function() {
-    model = new models.Tripclip();
+    model = new models.Triptrack();
   });
 
   it("builds a blank point model", function() {
@@ -25,8 +25,8 @@ describe("models.Tripclip", function() {
   });
 
   describe("#url", function() {
-    it("POSTs to the tripclips url", function() {
-      expect(model.url).to.equal("/tripclips");
+    it("POSTs to the triptracks url", function() {
+      expect(model.url).to.equal("/triptracks");
     });
   });
 
@@ -51,7 +51,7 @@ describe("models.Tripclip", function() {
       json = model.toJSON();
     });
 
-    it("includes the tripclip's name", function() {
+    it("includes the triptrack's name", function() {
       expect(json.name).to.equal(name);
     });
 
