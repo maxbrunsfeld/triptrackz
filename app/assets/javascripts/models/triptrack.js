@@ -4,6 +4,7 @@ models.Triptrack = Backbone.Model.extend({
 
   constructor: function(attrs, options) {
     this.point = new models.Point();
+    this.soundcloudTracks = new collections.SoundcloudTracks();
     return models.Triptrack.__super__.constructor.apply(this, arguments);
   },
 

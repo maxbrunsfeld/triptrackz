@@ -48,8 +48,9 @@ describe("pages.TriptracksNew", function() {
     expect(page.form.el).to.equal(triptrackFormEl[0]);
   });
 
-  it("builds a soundcloud track search view", function() {
+  it("builds a soundcloud track search view with the triptrack", function() {
     expect(page.soundcloudTrackSearch).to.be.an.instanceOf(views.SoundcloudTrackSearch);
-    expect(page.soundcloudTrackSearch.el).to.equal(modalEl[0])
+    expect(page.soundcloudTrackSearch.el).to.equal(modalEl[0]);
+    expect(page.soundcloudTrackSearch.triptrack).to.equal(page.triptrack);
   });
 });

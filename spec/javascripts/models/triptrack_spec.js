@@ -10,6 +10,10 @@ describe("models.Triptrack", function() {
     expect(model.point.isPending()).to.be.true;
   });
 
+  it("has a collection of soundcloud tracks", function() {
+    expect(model.soundcloudTracks).to.be.an.instanceOf(collections.SoundcloudTracks)
+  });
+
   describe("when coordinates are set", function() {
     it("sets them on the point model", function() {
       model.set({
