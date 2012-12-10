@@ -1,5 +1,5 @@
-class RenameTripcastsToTriptracks < ActiveRecord::Migration
+class RenameTripcastsToTripclips < ActiveRecord::Migration
   def change
-    rename_table :tripcasts, :triptracks
+    rename_table :tripcasts, :tripclips
   end
 end

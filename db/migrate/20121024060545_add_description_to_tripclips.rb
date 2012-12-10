@@ -1,5 +1,5 @@
-class AddDescriptionToTriptracks < ActiveRecord::Migration
+class AddDescriptionToTripclips< ActiveRecord::Migration
   def change
-    add_column :triptracks, :description, :text
+    add_column :tripclips, :description, :text
   end
 end

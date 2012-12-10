@@ -1,5 +1,5 @@
-class AddAddressToTriptracks < ActiveRecord::Migration
+class AddAddressToTripclips < ActiveRecord::Migration
   def change
-    add_column :triptracks, :address, :string
+    add_column :tripclips, :address, :string
   end
 end
