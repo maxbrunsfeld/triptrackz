@@ -1,7 +1,6 @@
 views.Marker = Backbone.View.extend({
 
   initialize: function(options) {
-    this.model = options.model;
     this.mapView = options.mapView;
     this.readOnly = options.readOnly;
 

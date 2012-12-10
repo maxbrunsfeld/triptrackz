@@ -23,4 +23,9 @@ pages.TriptracksNew = function(options) {
     el: options.triptrackFormEl,
     model: this.triptrack
   });
+
+  this.soundcloudTracksList = new views.SoundcloudTracksList({
+    collection: this.triptrack.soundcloudTracks,
+    el: options.tracksListEl
+  });
 };
