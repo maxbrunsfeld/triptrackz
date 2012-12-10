@@ -47,4 +47,14 @@ body.triptracks {
       }
     }
   }
+
+  ol.tracks {
+    .track {
+      display: block;
+    }
+
+    .selected {
+      background-color: #e8d1ff;
+    }
+  }
 }

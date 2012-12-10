@@ -1,16 +1,18 @@
 describe("pages.TriptracksNew", function() {
-  var page, mapEl, triptrackFormEl, addressEl, modalEl;
+  var page, mapEl, triptrackFormEl, addressEl, modalEl, tracksListEl;
 
   beforeEach(function() {
     modalEl = $("<div/>");
     mapEl = $("<div/>");
     addressEl = $("<form/>");
     triptrackFormEl = $("<form/>");
+    tracksListEl = $("<ol/>");
     page = new pages.TriptracksNew({
       mapEl: mapEl,
       addressEl: addressEl,
       triptrackFormEl: triptrackFormEl,
-      modalEl: modalEl
+      modalEl: modalEl,
+      tracksListEl: tracksListEl
     });
   });
 
@@ -48,8 +50,15 @@ describe("pages.TriptracksNew", function() {
     expect(page.form.el).to.equal(triptrackFormEl[0]);
   });
 
-  it("builds a soundcloud track search view", function() {
+  it("builds a soundcloud track search view with the triptrack", function() {
     expect(page.soundcloudTrackSearch).to.be.an.instanceOf(views.SoundcloudTrackSearch);
-    expect(page.soundcloudTrackSearch.el).to.equal(modalEl[0])
+    expect(page.soundcloudTrackSearch.el).to.equal(modalEl[0]);
+    expect(page.soundcloudTrackSearch.triptrack).to.equal(page.triptrack);
+  });
+
+  it("builds a soundcloud track list view with the soundcloud tracks collection", function() {
+    expect(page.soundcloudTracksList).to.be.an.instanceOf(views.SoundcloudTracksList);
+    expect(page.soundcloudTracksList.collection).to.equal(page.triptrack.soundcloudTracks);
+    expect(page.soundcloudTracksList.el).to.equal(tracksListEl[0]);
   });
 });
