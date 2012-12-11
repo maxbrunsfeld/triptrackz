@@ -5,7 +5,7 @@
 <div class="first column">
   <p>tracks list</p>
   <a href="#add-soundcloud-track" role="button" data-toggle="modal">Add Soundcloud Track</a>
-  <ol class="tracks"></ol>
+  <ol class="tracks" id="selected-tracks"></ol>
 </div>
 
 <div class="column">
@@ -46,6 +46,7 @@
     modalEl: $("#add-soundcloud-track"),
     mapEl: $("#map"),
     addressEl: $("#address-form"),
-    triptrackFormEl: $("#triptrack-form")
+    triptrackFormEl: $("#triptrack-form"),
+    tracksListEl: $("#selected-tracks")
   });
 </script>
