@@ -3,7 +3,7 @@ pages.TripsNew = function(options) {
   this.point = this.trip.point;
   this.region = new models.Region({ points: [this.point] });
 
-  this.soundcloudTrackSearch = new views.SoundcloudTrackSearch({
+  this.trackSearch = new views.TrackSearch({
     el: options.modalEl,
     trip: this.trip
   });
@@ -24,8 +24,8 @@ pages.TripsNew = function(options) {
     model: this.trip
   });
 
-  this.soundcloudTracksList = new views.SoundcloudTracksList({
-    collection: this.trip.soundcloudTracks,
+  this.tracksList = new views.TracksList({
+    collection: this.trip.tracks,
     el: options.tracksListEl
 
   });

@@ -51,14 +51,14 @@ describe("pages.TripsNew", function() {
   });
 
   it("builds a soundcloud track search view with the trip", function() {
-    expect(page.soundcloudTrackSearch).to.be.an.instanceOf(views.SoundcloudTrackSearch);
-    expect(page.soundcloudTrackSearch.el).to.equal(modalEl[0]);
-    expect(page.soundcloudTrackSearch.trip).to.equal(page.trip);
+    expect(page.trackSearch).to.be.an.instanceOf(views.TrackSearch);
+    expect(page.trackSearch.el).to.equal(modalEl[0]);
+    expect(page.trackSearch.trip).to.equal(page.trip);
   });
 
   it("builds a soundcloud track list view with the soundcloud tracks collection", function() {
-    expect(page.soundcloudTracksList).to.be.an.instanceOf(views.SoundcloudTracksList);
-    expect(page.soundcloudTracksList.collection).to.equal(page.trip.soundcloudTracks);
-    expect(page.soundcloudTracksList.el).to.equal(tracksListEl[0]);
+    expect(page.tracksList).to.be.an.instanceOf(views.TracksList);
+    expect(page.tracksList.collection).to.equal(page.trip.tracks);
+    expect(page.tracksList.el).to.equal(tracksListEl[0]);
   });
 });

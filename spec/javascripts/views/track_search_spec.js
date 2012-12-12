@@ -1,4 +1,4 @@
-describe("views.SoundcloudTrackSearch", function() {
+describe("views.TrackSearch", function() {
   var input, searchButton, addTrackButton, list, modal, view, trip;
 
   beforeEach(function(){
@@ -13,7 +13,7 @@ describe("views.SoundcloudTrackSearch", function() {
 
     trip = new models.Trip();
 
-    view = new views.SoundcloudTrackSearch({ el: modal, trip: trip });
+    view = new views.TrackSearch({ el: modal, trip: trip });
   });
 
   describe("typing a search string and clicking the search button", function() {
@@ -79,13 +79,13 @@ describe("views.SoundcloudTrackSearch", function() {
 
         describe("clicking the 'add track' button", function() {
           it("adds the selected soundcloud track to the trip", function() {
-            var soundcloudTracks = trip.soundcloudTracks;
-            expect(soundcloudTracks.length).to.equal(0);
+            var tracks = trip.tracks;
+            expect(tracks.length).to.equal(0);
 
             addTrackButton.click();
 
-            expect(soundcloudTracks.length).to.equal(1);
-            expect(soundcloudTracks.first().get("title")).to.equal("amazingdub")
+            expect(tracks.length).to.equal(1);
+            expect(tracks.first().get("title")).to.equal("amazingdub")
           });
         });
       });

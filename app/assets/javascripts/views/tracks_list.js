@@ -1,4 +1,4 @@
-views.SoundcloudTracksList = Backbone.View.extend({
+views.TracksList = Backbone.View.extend({
 
   initialize: function() {
     this.collection.on("add", function(model) {

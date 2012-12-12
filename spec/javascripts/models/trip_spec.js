@@ -11,7 +11,7 @@ describe("models.Trip", function() {
   });
 
   it("has a collection of soundcloud tracks", function() {
-    expect(model.soundcloudTracks).to.be.an.instanceOf(collections.SoundcloudTracks)
+    expect(model.tracks).to.be.an.instanceOf(collections.Tracks)
   });
 
   describe("when coordinates are set", function() {
