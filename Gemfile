@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'thin'
 gem 'rails', '3.2.8'
 gem 'activerecord-postgresql-adapter'
 gem 'omniauth'
@@ -13,6 +14,7 @@ gem 'execjs'
 gem 'bootstrap-sass'
 
 group :test, :development do
+  gem 'rails-dev-tweaks', '~> 0.6.1'
   gem 'fixture_builder'
   gem 'factory_girl'
   gem 'rspec'
