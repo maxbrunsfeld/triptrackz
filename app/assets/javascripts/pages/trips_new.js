@@ -1,11 +1,11 @@
-pages.TriptracksNew = function(options) {
-  this.triptrack = new models.Triptrack()
-  this.point = this.triptrack.point;
+pages.TripsNew = function(options) {
+  this.trip = new models.Trip()
+  this.point = this.trip.point;
   this.region = new models.Region({ points: [this.point] });
 
   this.soundcloudTrackSearch = new views.SoundcloudTrackSearch({
     el: options.modalEl,
-    triptrack: this.triptrack
+    trip: this.trip
   });
   this.map = new views.Map({
     el: options.mapEl,
@@ -19,13 +19,13 @@ pages.TriptracksNew = function(options) {
     el: options.addressEl,
     models: [this.point]
   });
-  this.form = new views.TriptrackForm({
-    el: options.triptrackFormEl,
-    model: this.triptrack
+  this.form = new views.TripForm({
+    el: options.tripFormEl,
+    model: this.trip
   });
 
   this.soundcloudTracksList = new views.SoundcloudTracksList({
-    collection: this.triptrack.soundcloudTracks,
+    collection: this.trip.soundcloudTracks,
     el: options.tracksListEl
 
   });

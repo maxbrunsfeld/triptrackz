@@ -1,10 +1,10 @@
-I can play the audio clip for a triptrack
-  - when I click the triptrack in the list, the expanded view includes
+I can play the audio clip for a trip
+  - when I click the trip in the list, the expanded view includes
     an audio player
-  - clicking play in the audio player plays the triptrack
+  - clicking play in the audio player plays the trip
 
-I can click a marker on the map to expand a triptrack
+I can click a marker on the map to expand a trip
 
-I can add a description of a triptrack
-  - there's a text area for entering triptrack description
-  - the description appears on triptracks list page when user clicks a triptrack
+I can add a description of a trip
+  - there's a text area for entering trip description
+  - the description appears on trips list page when user clicks a trip

@@ -1,9 +1,9 @@
 I can see the length of a triptrack
 
-From the triptracks list page, I can navigate to the new triptrack page
+From the trips list page, I can navigate to the new trip page
 
 I can see my profile
   - I navigate to my profile with a link in the header
-  - the page shows a list of my triptracks
+  - the page shows a list of my trips
 
-When I click a triptrack in the list, map zooms to triptrack's marker
+When I click a trip in the list, map zooms to trip's marker

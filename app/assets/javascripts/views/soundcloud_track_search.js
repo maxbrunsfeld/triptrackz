@@ -6,7 +6,7 @@ views.SoundcloudTrackSearch = Backbone.View.extend({
   },
 
   initialize: function(options) {
-    this.triptrack = options.triptrack;
+    this.trip = options.trip;
     this.tracks = new collections.SoundcloudTracks();
     SC.initialize({
       client_id: '756496d162bf7cdf15048b5b81a8f09c'
@@ -34,6 +34,6 @@ views.SoundcloudTrackSearch = Backbone.View.extend({
 
   addTrackButtonClicked: function() {
     var selectedTrack = this.tracks.get(this.selectedTrackId);
-    this.triptrack.soundcloudTracks.add(selectedTrack);
+    this.trip.soundcloudTracks.add(selectedTrack);
   }
 });

@@ -1,10 +1,10 @@
-pages.TriptracksIndex = function(options) {
+pages.TripsIndex = function(options) {
   this.points = [new models.Point(), new models.Point()];
   this.region = new models.Region({ points: this.points });
-  this.triptracks = new collections.Triptracks([], { region: this.region });
+  this.trips = new collections.Trips([], { region: this.region });
 
   this.region.on("change", function() {
-    this.triptracks.fetch({ add: true });
+    this.trips.fetch({ add: true });
   }, this);
 
   this.map = new views.Map({
@@ -15,12 +15,12 @@ pages.TriptracksIndex = function(options) {
     el: options.addressEl,
     models: this.points
   });
-  this.triptracksList = new views.TriptracksList({
-    collection: this.triptracks,
+  this.tripsList = new views.TripsList({
+    collection: this.trips,
     el: options.listEl
   });
   this.markerSet = new views.MarkerSet({
-    collection: this.triptracks,
+    collection: this.trips,
     mapView: this.map
   });
 };

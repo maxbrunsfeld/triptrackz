@@ -1,11 +1,11 @@
-models.Triptrack = Backbone.Model.extend({
+models.Trip = Backbone.Model.extend({
 
-  url: "/triptracks",
+  url: "/trips",
 
   constructor: function(attrs, options) {
     this.point = new models.Point();
     this.soundcloudTracks = new collections.SoundcloudTracks();
-    return models.Triptrack.__super__.constructor.apply(this, arguments);
+    return models.Trip.__super__.constructor.apply(this, arguments);
   },
 
   set: function(attrs) {
@@ -23,7 +23,7 @@ models.Triptrack = Backbone.Model.extend({
       delete attrs.address;
     }
 
-    return models.Triptrack.__super__.set.apply(this, arguments);
+    return models.Trip.__super__.set.apply(this, arguments);
   },
 
   toJSON: function() {

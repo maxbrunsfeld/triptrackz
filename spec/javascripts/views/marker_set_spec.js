@@ -2,7 +2,7 @@ describe("views.MarkerSet", function() {
   var view, mapView, collection;
 
   beforeEach(function() {
-    collection = new collections.Triptracks();
+    collection = new collections.Trips();
     mapView = new views.Map({ model: new models.Region() });
     view = new views.MarkerSet({ mapView: mapView, collection: collection });
   });
@@ -25,7 +25,7 @@ describe("views.MarkerSet", function() {
       ]);
     });
 
-    it("makes a marker view for the triptrack", function() {
+    it("makes a marker view for the trip", function() {
       expect(view.markers.length).to.equal(2);
       expect(view.markers[0].model).to.equal(collection.at(0).point);
       expect(view.markers[1].model).to.equal(collection.at(1).point);

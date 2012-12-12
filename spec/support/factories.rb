@@ -2,7 +2,7 @@ FactoryGirl.define do
 
   file_fixtures_dir = Rails.root + "spec/file_fixtures"
 
-  factory :triptrack do
+  factory :trip do
     user
     name { Faker::Lorem.sentence(1) }
     latitude { Faker::Address.latitude }

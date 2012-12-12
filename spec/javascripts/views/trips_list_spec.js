@@ -1,10 +1,10 @@
-describe("views.TriptracksList", function() {
+describe("views.TripsList", function() {
   var view, collection, list;
 
   beforeEach(function() {
-    collection = new collections.Triptracks();
+    collection = new collections.Trips();
     list = $("<ul></ul>");
-    view = new views.TriptracksList({
+    view = new views.TripsList({
       collection: collection,
       el: list
     });
@@ -34,16 +34,16 @@ describe("views.TriptracksList", function() {
       links = list.find("li a");
     });
 
-    it("renders a list item with an item for each triptrack", function() {
+    it("renders a list item with an item for each trip", function() {
       expect(items.length).to.equal(2);
     });
 
-    it("renders each triptrack's name as a link", function() {
+    it("renders each trip's name as a link", function() {
       expect(links.eq(0).text()).to.contain("zebra")
       expect(links.eq(1).text()).to.contain("chacha")
     });
 
-    it("renders each triptrack's description", function() {
+    it("renders each trip's description", function() {
       var descriptions = items.find("p.description");
       expect(descriptions.eq(0).text()).to.contain(collection.at(0).get("description"));
       expect(descriptions.eq(1).text()).to.contain(collection.at(1).get("description"));
@@ -58,7 +58,7 @@ describe("views.TriptracksList", function() {
       });
     });
 
-    describe("when a triptrack is selected", function() {
+    describe("when a trip is selected", function() {
       it("expands the corresponding list item", function() {
         expect(items.eq(0).hasClass("selected")).to.be.false;
         expect(items.eq(1).hasClass("selected")).to.be.false;

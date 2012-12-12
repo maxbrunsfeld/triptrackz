@@ -1,5 +1,5 @@
-collections.Triptracks = Backbone.Collection.extend({
-  model: models.Triptrack,
+collections.Trips = Backbone.Collection.extend({
+  model: models.Trip,
 
   initialize: function(models, options) {
     options || (options = {});
@@ -13,7 +13,7 @@ collections.Triptracks = Backbone.Collection.extend({
       east = boundaries.getNorthEast().lng(),
       west = boundaries.getSouthWest().lng();
 
-    return "/triptracks?" + [
+    return "/trips?" + [
       "north=" + north,
       "south=" + south,
       "east=" + east,

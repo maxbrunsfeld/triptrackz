@@ -1,13 +1,13 @@
-describe("collections.Triptracks", function() {
+describe("collections.Trips", function() {
   var collection, region;
 
   beforeEach(function() {
     region = new models.Region({ points: [] });
-    collection = new collections.Triptracks([], { region: region });
+    collection = new collections.Trips([], { region: region });
   });
 
-  it("contains triptrack models", function() {
-    expect(collection.model).to.equal(models.Triptrack);
+  it("contains trip models", function() {
+    expect(collection.model).to.equal(models.Trip);
   });
 
   describe("#url", function(){
@@ -17,7 +17,7 @@ describe("collections.Triptracks", function() {
         new google.maps.LatLng(35, -109)
       );
       expect(collection.url()).to.equal(
-        "/triptracks?north=35&south=34&east=-109&west=-111"
+        "/trips?north=35&south=34&east=-109&west=-111"
       );
     });
   });

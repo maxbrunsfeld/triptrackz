@@ -1,8 +1,8 @@
-describe("models.Triptrack", function() {
+describe("models.Trip", function() {
   var point, model;
 
   beforeEach(function() {
-    model = new models.Triptrack();
+    model = new models.Trip();
   });
 
   it("builds a blank point model", function() {
@@ -29,8 +29,8 @@ describe("models.Triptrack", function() {
   });
 
   describe("#url", function() {
-    it("POSTs to the triptracks url", function() {
-      expect(model.url).to.equal("/triptracks");
+    it("POSTs to the trips url", function() {
+      expect(model.url).to.equal("/trips");
     });
   });
 
@@ -55,7 +55,7 @@ describe("models.Triptrack", function() {
       json = model.toJSON();
     });
 
-    it("includes the triptrack's name", function() {
+    it("includes the trip's name", function() {
       expect(json.name).to.equal(name);
     });
 

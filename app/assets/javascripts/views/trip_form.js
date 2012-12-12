@@ -1,4 +1,4 @@
-views.TriptrackForm = Backbone.View.extend({
+views.TripForm = Backbone.View.extend({
   events: {
     "click button": "formSubmitted"
   },

@@ -1,5 +1,5 @@
 describe("views.SoundcloudTrackSearch", function() {
-  var input, searchButton, addTrackButton, list, modal, view, triptrack;
+  var input, searchButton, addTrackButton, list, modal, view, trip;
 
   beforeEach(function(){
     input = $("<input/>").attr("name", "search");
@@ -11,9 +11,9 @@ describe("views.SoundcloudTrackSearch", function() {
     list = $("<ol/>").addClass("tracks");
     modal = $("<div/>").append(input, searchButton, list, addTrackButton);
 
-    triptrack = new models.Triptrack();
+    trip = new models.Trip();
 
-    view = new views.SoundcloudTrackSearch({ el: modal, triptrack: triptrack });
+    view = new views.SoundcloudTrackSearch({ el: modal, trip: trip });
   });
 
   describe("typing a search string and clicking the search button", function() {
@@ -78,8 +78,8 @@ describe("views.SoundcloudTrackSearch", function() {
         })
 
         describe("clicking the 'add track' button", function() {
-          it("adds the selected soundcloud track to the triptrack", function() {
-            var soundcloudTracks = triptrack.soundcloudTracks;
+          it("adds the selected soundcloud track to the trip", function() {
+            var soundcloudTracks = trip.soundcloudTracks;
             expect(soundcloudTracks.length).to.equal(0);
 
             addTrackButton.click();

@@ -1,4 +1,4 @@
-describe("views.TriptrackForm", function() {
+describe("views.TripForm", function() {
   var view, nameInput, fileInput, button, model, descriptionInput;
 
   beforeEach(function() {
@@ -13,8 +13,8 @@ describe("views.TriptrackForm", function() {
       button
     );
 
-    model = new models.Triptrack();
-    view = new views.TriptrackForm({ el: form, model: model });
+    model = new models.Trip();
+    view = new views.TripForm({ el: form, model: model });
   });
 
   describe("filling out the form and clicking the submit button", function() {
@@ -31,7 +31,7 @@ describe("views.TriptrackForm", function() {
       expect(fileInputUsed[0]).to.equal(fileInput[0])
     });
 
-    it("saves the triptrack model", function() {
+    it("saves the trip model", function() {
       button.click();
       expect(model.save).to.have.been.calledWith({
         name: "Adventure in Temescal",

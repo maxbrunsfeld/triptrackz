@@ -8,6 +8,6 @@ TripcastStore::Application.routes.draw do
   # only in specs
   get '/specs' => "specs#index"
 
-  resources 'triptracks'
+  resources 'trips'
   resources 'users'
 end
