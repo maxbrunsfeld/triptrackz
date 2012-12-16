@@ -5,11 +5,6 @@ class TripsController < ApplicationController
     @trip = Trip.new
   end
 
-  def create
-    current_user.trips.create(params[:trip])
-    head :ok
-  end
-
   def index
     if params[:north]
       @trips = Trip.within_box(
@@ -27,5 +22,4 @@ class TripsController < ApplicationController
       format.json { render :json => @trips }
     end
   end
-
 end

@@ -54,14 +54,7 @@ describe TripsController do
         it "returns a list of trips as json" do
           get :index, {:format => :json}
           json = JSON.parse(response.body)
-
-          names = json.map { |hash| hash["name"] }
-          latitudes = json.map { |hash| hash["latitude"] }
-          longitudes = json.map { |hash| hash["longitude"] }
-
-          names.should include(@trip1.name, @trip2.name)
-          latitudes.should include(@trip1.latitude, @trip2.latitude)
-          longitudes.should include(@trip1.longitude, @trip2.longitude)
+          json.should == [@trip1.as_json, @trip2.as_json]
         end
       end
     end
@@ -72,26 +65,6 @@ describe TripsController do
       get :new
       assigns[:trip].should be_a Trip
       response.should be_success
-    end
-  end
-
-  describe "#create" do
-    let(:params) do
-      {
-        :name => "alissa's trip",
-        :latitude => 34.0,
-        :longitude => -122.0
-      }
-    end
-
-    it "creates a trip with the given parameters" do
-      post :create, :trip => params
-
-      trip = Trip.last
-      trip.name.should == params[:name]
-      trip.user_id.should == user.id
-      trip.latitude.should == params[:latitude]
-      trip.longitude.should == params[:longitude]
     end
   end
 end
